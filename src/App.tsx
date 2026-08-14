@@ -24,12 +24,12 @@ function App() {
       
       <main>
         <Hero />
-        <About />
         <Projects />
+        <Certifications />
+        <About />
         <Skills />
         <Education />
         <Experience />
-        <Certifications />
         <Contact />
       </main>
     </div>
