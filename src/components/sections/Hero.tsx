@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import ProfileFrame from '../ui/ProfileFrame';
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
@@ -44,31 +45,14 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right: Full-Side DP Container */}
+      {/* Right: Profile Frame Container */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="w-full md:w-1/2 h-[50vh] md:h-screen absolute top-0 right-0 z-0 md:z-10 opacity-30 md:opacity-100"
+        className="w-full md:w-1/2 flex justify-center items-center mt-12 md:mt-0 relative z-10"
       >
-        {/* The tech-masked image container */}
-        <div 
-          className="w-full h-full bg-surface border-l-4 border-primary relative overflow-hidden"
-          style={{ clipPath: 'polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 85%, 15% 70%)' }}
-        >
-          {/* Inner shadow overlay */}
-          <div className="absolute inset-0 shadow-[inset_10px_0_30px_rgba(0,0,0,0.8)] z-20 pointer-events-none"></div>
-          
-          {/* Circuit pattern overlay to blend the photo */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-background/40 to-background z-10 pointer-events-none"></div>
-          
-          {/* Placeholder text. Replace this inner content with an actual <img src="..." /> later */}
-          <div className="absolute inset-0 flex items-center justify-center bg-muted/5 z-0">
-            <span className="text-muted font-mono text-lg opacity-50 text-center px-4">
-              [Full-Side Photo Placeholder]
-            </span>
-          </div>
-        </div>
+        <ProfileFrame />
       </motion.div>
 
       {/* Scroll Indicator */}

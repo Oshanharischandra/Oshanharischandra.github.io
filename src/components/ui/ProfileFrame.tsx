@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import heroImg from '../../assets/hero.png';
 
 export default function ProfileFrame() {
   return (
@@ -51,10 +52,11 @@ export default function ProfileFrame() {
         className="relative w-[96%] h-[96%] bg-surface flex items-center justify-center overflow-hidden z-10"
         style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
       >
-        {/* Placeholder text. Replace this inner content with an actual <img src="..." /> later */}
-        <span className="text-muted font-mono text-sm opacity-50 text-center px-4">
-          [Photo Placeholder]
-        </span>
+        <img 
+          src={heroImg} 
+          alt="Oshan Niluminda" 
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
   );
