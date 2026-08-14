@@ -8,16 +8,16 @@ const educationList = [
     degree: "B.Sc. in Information Technology (Expected)",
     institution: "University of Kelaniya",
     department: "Department of Industrial Management",
-    period: "2021 - Present",
+    period: "2025 - Present",
     details: "Relevant Coursework: Web Application Development, Event Driven Programming, Embedded Systems, Mobile Applications Development."
   },
   {
     id: 2,
-    degree: "High School Diploma",
-    institution: "[Your School Name]",
-    department: "Physical Science Stream",
-    period: "2018 - 2020",
-    details: "G.C.E. Advanced Level - Mathematics, Physics, Chemistry."
+    degree: "GCE Advanced Level",
+    institution: "R/Sivali Central College",
+    department: "Science Faculty",
+    period: "2021 - 2023",
+    details: "G.C.E. Advanced Level - Mathematics, Physics, ICT."
   }
 ];
 

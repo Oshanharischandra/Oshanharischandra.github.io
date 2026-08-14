@@ -7,38 +7,19 @@ const certifications = [
   {
     id: 1,
     title: "Robofest Competition",
-    issuer: "Robotics Club",
+    issuer: "SLIIT",
     date: "2025",
     description: "Participated and built a maze-solving robot. Gained practical experience in PID control and PlatformIO."
   },
   {
     id: 2,
     title: "iDEASPRiNT Hackathon",
-    issuer: "Innovation Hub",
-    date: "2023",
-    description: "Developed SafeX Wearable Health Monitor as part of Team MIZU."
+    issuer: "Industrial Management",
+    date: "2026",
+    description: "Designed SafeX Wearable Health Monitor as part of Team MIZU."
   },
-  {
-    id: 3,
-    title: "A- Grade in IoT Concept Proposals",
-    issuer: "University of Kelaniya",
-    date: "2023",
-    description: "Awarded for exceptional design and feasibility in proposing industrial IoT architectures."
-  },
-  {
-    id: 4,
-    title: "Embedded Systems Specialization",
-    issuer: "Coursera",
-    date: "2022",
-    description: "Comprehensive coursework on ARM Cortex-M architecture and RTOS fundamentals."
-  },
-  {
-    id: 5,
-    title: "PCB Design Masterclass",
-    issuer: "Altium",
-    date: "2022",
-    description: "Advanced multi-layer board routing and signal integrity principles."
-  }
+  
+
 ];
 
 const CertCard = ({ cert }: { cert: typeof certifications[0] }) => (

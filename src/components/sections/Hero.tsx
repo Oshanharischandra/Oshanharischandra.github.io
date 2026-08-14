@@ -24,13 +24,13 @@ export default function Hero() {
               Hello, World. I am
             </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
-            Oshan Niluminda
+            Oshan Harischandra
           </h1>
           <h2 className="text-xl md:text-3xl text-primary font-mono mb-6 shadow-primary/20 drop-shadow-md">
             Aspiring IoT Engineer
           </h2>
             <p className="text-muted text-lg leading-relaxed max-w-xl mx-auto md:mx-0 drop-shadow-md font-medium">
-              I study at the University of Kelaniya, Faculty of Science, Department of Industrial Management, in a computing/IT program, with a hands-on focus on IoT and embedded systems (ESP32/Arduino/STM32 projects, PCB design, sensors).
+              I study at the University of Kelaniya, Faculty of Science, Department of Industrial Management, in a MIT/IT program, with a hands-on focus on IoT and embedded systems (ESP32/Arduino/STM32 projects, PCB design, sensors).
             </p>
             
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">

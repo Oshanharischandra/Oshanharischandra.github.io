@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import heroImg from '../../assets/hero.png';
+import heroImg from '../../assets/hero.jpeg';
 
 export default function ProfileFrame() {
   return (

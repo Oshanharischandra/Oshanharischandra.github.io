@@ -27,22 +27,8 @@ const experiences = [
     description: "Designing custom structural frames, enclosures, and precise 3D models using SolidWorks for various hardware projects and clients.",
     tags: ["SolidWorks", "3D Modeling", "Enclosure Design"]
   },
-  {
-    id: 4,
-    role: "Mentee Lead - Group 17",
-    company: "Industry Mentorship Program",
-    period: "Ongoing",
-    description: "Coordinating professional correspondence and technical milestones with industry mentor Mr. Thimitha Gamage, leading a group of engineering students.",
-    tags: ["Leadership", "Professional Communication", "Project Management"]
-  },
-  {
-    id: 5,
-    role: "Technical Mentor",
-    company: "VisionEdge - IdeaSprint",
-    period: "Recent",
-    description: "Guiding a junior student team on soil sensor integration and technical pitch development for the IdeaSprint competition.",
-    tags: ["Mentorship", "Soil Sensors", "Pitching"]
-  }
+
+
 ];
 
 import { useCarousel } from '../../hooks/useCarousel';
