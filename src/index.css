@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #283032;
+  --color-surface: #333b3d;
+  --color-primary: #226bb1;
+  --color-secondary: #96d3e8;
+  --color-muted: #aab6c6;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-muted font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono text-white;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Custom Scrollbar for a technical feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #283032;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aab6c6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #96d3e8;
+}
+
+/* Base custom cursor reset for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
