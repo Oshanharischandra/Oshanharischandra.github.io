@@ -45,36 +45,20 @@ const experiences = [
   }
 ];
 
+import { useCarousel } from '../../hooks/useCarousel';
+
 export default function Experience() {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  const [cardsPerView, setCardsPerView] = useState(1);
-
-  useEffect(() => {
-    const handleResize = () => setCardsPerView(window.innerWidth >= 768 ? 2 : 1);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const nextSlide = useCallback(() => {
-    setCarouselIndex((prev) => (prev + cardsPerView >= experiences.length ? 0 : prev + cardsPerView));
-  }, [cardsPerView]);
-
-  const prevSlide = () => {
-    setCarouselIndex((prev) => (prev - cardsPerView < 0 ? Math.max(0, experiences.length - cardsPerView) : prev - cardsPerView));
-  };
-
-  // Auto-advance
-  useEffect(() => {
-    if (prefersReducedMotion || isHovering) return;
-    
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [nextSlide, prefersReducedMotion, isHovering]);
+  const {
+    carouselIndex,
+    cardsPerView,
+    setIsHovering,
+    handleNext,
+    handlePrev,
+  } = useCarousel(
+    experiences.length,
+    (width) => width >= 768 ? 2 : 1,
+    5000 // 5 seconds interval
+  );
 
   const visibleExperiences = experiences.slice(carouselIndex, carouselIndex + cardsPerView);
 
@@ -143,10 +127,10 @@ export default function Experience() {
             {/* Carousel Controls */}
             <div className="flex items-center justify-between mt-8">
               <div className="flex space-x-2">
-                <button onClick={prevSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous">
+                <button onClick={handlePrev} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous">
                   <ChevronLeft size={24} />
                 </button>
-                <button onClick={nextSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next">
+                <button onClick={handleNext} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next">
                   <ChevronRight size={24} />
                 </button>
               </div>

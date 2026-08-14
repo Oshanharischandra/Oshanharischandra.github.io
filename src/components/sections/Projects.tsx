@@ -81,43 +81,29 @@ const ProjectCard = ({ project, onClick }: { project: Project, onClick: () => vo
   </motion.div>
 );
 
+import { useCarousel } from '../../hooks/useCarousel';
+
 export default function Projects() {
   const [shuffledProjects, setShuffledProjects] = useState<Project[]>([]);
-  const [carouselIndex, setCarouselIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showGallery, setShowGallery] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-
-  // Cards per view: 1 on mobile, 2 on desktop
-  const [cardsPerView, setCardsPerView] = useState(1);
 
   useEffect(() => {
     setShuffledProjects(shuffleArray(projectsData));
-    
-    const handleResize = () => setCardsPerView(window.innerWidth >= 768 ? 2 : 1);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const nextSlide = useCallback(() => {
-    setCarouselIndex((prev) => (prev + cardsPerView >= shuffledProjects.length ? 0 : prev + cardsPerView));
-  }, [cardsPerView, shuffledProjects.length]);
-
-  const prevSlide = () => {
-    setCarouselIndex((prev) => (prev - cardsPerView < 0 ? Math.max(0, shuffledProjects.length - cardsPerView) : prev - cardsPerView));
-  };
-
-  // Auto-advance
-  useEffect(() => {
-    if (prefersReducedMotion || isHovering || showGallery || selectedProject) return;
-    
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [nextSlide, prefersReducedMotion, isHovering, showGallery, selectedProject]);
+  const {
+    carouselIndex,
+    cardsPerView,
+    setIsHovering,
+    handleNext,
+    handlePrev,
+  } = useCarousel(
+    shuffledProjects.length,
+    (width) => width >= 768 ? 2 : 1,
+    5000, // 5 seconds interval
+    showGallery || !!selectedProject
+  );
 
   const visibleProjects = shuffledProjects.slice(carouselIndex, carouselIndex + cardsPerView);
 
@@ -175,10 +161,10 @@ export default function Projects() {
               {/* Carousel Controls */}
               <div className="flex items-center justify-between mt-8">
                 <div className="flex space-x-2">
-                  <button onClick={prevSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous projects">
+                  <button onClick={handlePrev} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous projects">
                     <ChevronLeft size={24} />
                   </button>
-                  <button onClick={nextSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next projects">
+                  <button onClick={handleNext} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next projects">
                     <ChevronRight size={24} />
                   </button>
                 </div>

@@ -2,41 +2,24 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Cpu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { skillsData } from '../../data/skills';
+import { useCarousel } from '../../hooks/useCarousel';
 
 export default function Skills() {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  const [cardsPerView, setCardsPerView] = useState(1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) setCardsPerView(3);
-      else if (window.innerWidth >= 768) setCardsPerView(2);
-      else setCardsPerView(1);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const nextSlide = useCallback(() => {
-    setCarouselIndex((prev) => (prev + cardsPerView >= skillsData.length ? 0 : prev + cardsPerView));
-  }, [cardsPerView]);
-
-  const prevSlide = () => {
-    setCarouselIndex((prev) => (prev - cardsPerView < 0 ? Math.max(0, skillsData.length - cardsPerView) : prev - cardsPerView));
-  };
-
-  // 3s Auto-advance with pause-on-hover
-  useEffect(() => {
-    if (prefersReducedMotion || isHovering) return;
-    
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [nextSlide, prefersReducedMotion, isHovering]);
+  const {
+    carouselIndex,
+    cardsPerView,
+    setIsHovering,
+    handleNext,
+    handlePrev,
+  } = useCarousel(
+    skillsData.length,
+    (width) => {
+      if (width >= 1024) return 3;
+      if (width >= 768) return 2;
+      return 1;
+    },
+    5000 // 5 seconds interval
+  );
 
   const visibleSkills = skillsData.slice(carouselIndex, carouselIndex + cardsPerView);
 
@@ -97,10 +80,10 @@ export default function Skills() {
             {/* Carousel Controls */}
             <div className="flex items-center justify-between mt-8">
               <div className="flex space-x-2">
-                <button onClick={prevSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous">
+                <button onClick={handlePrev} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Previous">
                   <ChevronLeft size={24} />
                 </button>
-                <button onClick={nextSlide} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next">
+                <button onClick={handleNext} className="p-2 border border-muted/30 rounded text-muted hover:text-secondary hover:border-secondary transition-colors" aria-label="Next">
                   <ChevronRight size={24} />
                 </button>
               </div>
