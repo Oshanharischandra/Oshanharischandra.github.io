@@ -41,7 +41,7 @@ export default function Skills() {
   const visibleSkills = skillsData.slice(carouselIndex, carouselIndex + cardsPerView);
 
   return (
-    <section id="skills" className="py-24 bg-surface/30 relative overflow-hidden">
+    <section id="skills" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

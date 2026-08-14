@@ -17,8 +17,8 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen relative overflow-hidden">
-      <CustomCursor />
       <GlobalBackground />
+      <CustomCursor />
       <IoTMotifs />
       <Navbar />
       

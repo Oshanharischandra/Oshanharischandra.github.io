@@ -24,6 +24,22 @@
   }
 }
 
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+}
+
+@keyframes pulse-trace {
+  0% { stroke-dashoffset: 3050; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { stroke-dashoffset: -50; opacity: 0; }
+}
+.animate-pulse-trace {
+  animation: pulse-trace 3s linear infinite;
+}
+
 /* Custom Scrollbar for a technical feel */
 ::-webkit-scrollbar {
   width: 8px;

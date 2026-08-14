@@ -55,7 +55,7 @@ export default function Education() {
   const visibleEducation = educationList.slice(carouselIndex, carouselIndex + cardsPerView);
 
   return (
-    <section id="education" className="py-24 bg-background relative overflow-hidden">
+    <section id="education" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
