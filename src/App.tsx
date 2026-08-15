@@ -24,10 +24,10 @@ function App() {
       
       <main>
         <Hero />
-        <Projects />
-        <Certifications />
         <About />
+        <Projects />
         <Skills />
+        <Certifications />
         <Education />
         <Experience />
         <Contact />
