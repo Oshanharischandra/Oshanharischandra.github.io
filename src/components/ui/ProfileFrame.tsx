@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
-import heroImg from '../../assets/hero.jpeg';
+import heroImg from '../../assets/hero.jpeg'; // TODO: Swap in a higher-resolution source image later
 
-export default function ProfileFrame() {
+interface ProfileFrameProps {
+  photoPosition?: string;
+}
+
+export default function ProfileFrame({ photoPosition = "center 20%" }: ProfileFrameProps) {
   return (
-    <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto flex items-center justify-center">
+    <div className="relative w-72 h-[22rem] md:w-96 md:h-[30rem] mx-auto flex items-center justify-center">
       {/* Glow Effect behind the hexagon */}
       <div 
         className="absolute inset-0 bg-secondary/20 blur-2xl rounded-full"
@@ -49,13 +53,14 @@ export default function ProfileFrame() {
 
       {/* Hexagon Clipped Image Container */}
       <div 
-        className="relative w-[96%] h-[96%] bg-surface flex items-center justify-center overflow-hidden z-10"
+        className="relative w-[96%] h-[98%] bg-surface flex items-center justify-center overflow-hidden z-10"
         style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
       >
         <img 
           src={heroImg} 
           alt="Oshan Niluminda" 
           className="w-full h-full object-cover"
+          style={{ objectPosition: photoPosition }}
         />
       </div>
     </div>
