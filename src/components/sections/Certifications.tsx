@@ -90,14 +90,14 @@ export default function Certifications() {
               onBlur={() => setIsHovering(false)}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px]">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
                   {visibleCerts.map((cert) => (
                     <motion.div
                       key={cert.id}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="h-full"
                     >
                       <CertCard cert={cert} />

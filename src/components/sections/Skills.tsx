@@ -47,14 +47,14 @@ export default function Skills() {
             onBlur={() => setIsHovering(false)}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[200px]">
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="wait">
                 {visibleSkills.map((group) => (
                   <motion.div
                     key={group.category}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="h-full"
                   >
                     <div className="bg-background/80 backdrop-blur-sm border border-muted/20 rounded-lg p-6 hover:border-secondary/50 transition-colors h-full flex flex-col">

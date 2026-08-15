@@ -62,14 +62,14 @@ export default function Education() {
             onBlur={() => setIsHovering(false)}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[250px]">
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="wait">
                 {visibleEducation.map((item) => (
                   <motion.div
                     key={item.id}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="h-full"
                   >
                     <div className="bg-surface/50 backdrop-blur-md border border-muted/20 p-6 rounded-lg hover:border-primary/50 transition-colors h-full flex flex-col group relative overflow-hidden">

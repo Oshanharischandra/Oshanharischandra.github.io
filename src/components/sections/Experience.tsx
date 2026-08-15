@@ -72,14 +72,14 @@ export default function Experience() {
             onBlur={() => setIsHovering(false)}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[300px]">
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="wait">
                 {visibleExperiences.map((exp) => (
                   <motion.div
                     key={exp.id}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="h-full"
                   >
                     <div className="bg-surface/80 backdrop-blur-md border border-muted/20 p-8 rounded-xl h-full flex flex-col hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
