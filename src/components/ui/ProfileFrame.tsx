@@ -7,21 +7,26 @@ interface ProfileFrameProps {
 
 export default function ProfileFrame({ photoPosition = "center 20%" }: ProfileFrameProps) {
   return (
-    <div className="relative w-72 h-[22rem] md:w-96 md:h-[30rem] mx-auto flex items-center justify-center">
-      {/* Glow Effect behind the hexagon */}
+    <div className="relative w-72 h-[28rem] md:w-[26rem] md:h-[34rem] mx-auto flex items-center justify-center p-4">
+      {/* Glow Effect behind the panel */}
       <div 
-        className="absolute inset-0 bg-secondary/20 blur-2xl rounded-full"
+        className="absolute inset-0 bg-secondary/10 blur-3xl rounded-2xl"
         style={{ transform: 'scale(0.8)' }}
       />
       
-      {/* Animated SVG Border */}
+      {/* Corner Brackets */}
+      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-secondary rounded-tl-xl z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(150,211,232,0.8)]" />
+      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary rounded-tr-xl z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(150,211,232,0.8)]" />
+      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-secondary rounded-bl-xl z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(150,211,232,0.8)]" />
+      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-secondary rounded-br-xl z-20 pointer-events-none drop-shadow-[0_0_8px_rgba(150,211,232,0.8)]" />
+
+      {/* Animated SVG Rectangular Border */}
       <svg 
-        viewBox="0 0 100 100" 
-        className="absolute inset-0 w-full h-full drop-shadow-[0_0_15px_rgba(150,211,232,0.6)] z-20 pointer-events-none"
+        className="absolute inset-0 w-full h-full drop-shadow-[0_0_12px_rgba(150,211,232,0.5)] z-20 pointer-events-none"
         preserveAspectRatio="none"
       >
-        <motion.polygon 
-          points="50,2 98,25 98,75 50,98 2,75 2,25"
+        <motion.rect
+          x="1" y="1" width="100%" height="100%" rx="16" ry="16"
           fill="none"
           stroke="#96d3e8"
           strokeWidth="1.5"
@@ -32,29 +37,14 @@ export default function ProfileFrame({ photoPosition = "center 20%" }: ProfileFr
             ease: "easeInOut",
             opacity: { duration: 0.5 }
           }}
+          // Using style to override the width/height to properly fit inside SVG keeping a 1px gap for stroke
+          style={{ width: 'calc(100% - 2px)', height: 'calc(100% - 2px)' }}
         />
-        {/* Corner Accent Dots */}
-        {[
-          "50,2", "98,25", "98,75", "50,98", "2,75", "2,25"
-        ].map((point, index) => {
-          const [cx, cy] = point.split(",");
-          return (
-            <motion.circle 
-              key={index}
-              cx={cx} cy={cy} r="1.5" 
-              fill="#226bb1"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2.5 + (index * 0.1), duration: 0.3 }}
-            />
-          );
-        })}
       </svg>
 
-      {/* Hexagon Clipped Image Container */}
+      {/* Rounded Rect Clipped Image Container */}
       <div 
-        className="relative w-[96%] h-[98%] bg-surface flex items-center justify-center overflow-hidden z-10"
-        style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+        className="relative w-full h-full bg-surface flex items-center justify-center overflow-hidden z-10 rounded-2xl shadow-xl border border-secondary/20"
       >
         <img 
           src={heroImg} 
@@ -62,6 +52,9 @@ export default function ProfileFrame({ photoPosition = "center 20%" }: ProfileFr
           className="w-full h-full object-cover"
           style={{ objectPosition: photoPosition }}
         />
+        
+        {/* Subtle inner overlay for tech feel */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none mix-blend-multiply" />
       </div>
     </div>
   );
