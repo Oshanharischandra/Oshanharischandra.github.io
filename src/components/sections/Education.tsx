@@ -8,7 +8,7 @@ const educationList = [
     institution: "University of Kelaniya",
     department: "Department of Industrial Management",
     period: "2025 - Present",
-    details: "Relevant Coursework: Web Application Development, Event Driven Programming, Embedded Systems, Mobile Applications Development."
+    details: "Relevant Coursework: Event Driven Programming, Embedded Systems, Mobile Applications Development."
   },
   {
     id: 2,

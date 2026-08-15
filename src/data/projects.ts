@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   longDescription?: string;
   tags: string[];
-  thumbnail?: string;
+  images?: string[];
   githubUrl?: string;
   demoUrl?: string;
   contribution?: string;
@@ -38,7 +38,7 @@ export const projectsData: Project[] = [
   {
     id: "stm32-maze",
     title: "STM32 Maze-Solving Robot",
-    description: "Autonomous robot built for Robofest, featuring dual-loop PID and flood-fill navigation.",
+    description: "Autonomous robot built for Robofest, featuring dual-loop PID and flood-fill navigation.(in progress)",
     longDescription: "Developed using PlatformIO, this robot uses N20 motors, an MPU-9250 gyro, and VL53L0X ToF sensors. The navigation relies on dual-loop PID for wall-centering and heading, combined with a flood-fill BFS algorithm.",
     tags: ["STM32", "PlatformIO", "PID Control", "C/C++", "Robotics"],
     githubUrl: "https://github.com/username/stm32-maze"
@@ -51,14 +51,7 @@ export const projectsData: Project[] = [
     tags: ["Arduino", "Stepper Motors", "MQTT", "GSM", "Web Dashboard"],
     githubUrl: "https://github.com/username/medimate"
   },
-  {
-    id: "aeroponics",
-    title: "Aeroponics Control System",
-    description: "Arduino-based grow environment controller with a LAN web dashboard.",
-    longDescription: "Features sine-eased PWM fan control, a mode-cycling humidifier, and an I2C LCD for local monitoring. Accessible via a LAN dashboard.",
-    tags: ["Arduino", "PWM", "I2C", "LAN", "Control Systems"],
-    githubUrl: "https://github.com/username/aeroponics"
-  },
+
   {
     id: "water-management",
     title: "Water Management IoT System",
@@ -67,20 +60,6 @@ export const projectsData: Project[] = [
     tags: ["IoT", "Industrial", "Sensors", "Dashboard"],
     githubUrl: "https://github.com/username/water-management"
   },
-  {
-    id: "unimart",
-    title: "UniMart",
-    description: "Campus marketplace full-stack web app built for a Software Architecture course.",
-    tags: ["React", "TypeScript", "Redux Toolkit", "MUI", "Tailwind CSS"],
-    githubUrl: "https://github.com/username/unimart",
-    demoUrl: "https://unimart-demo.com"
-  },
-  {
-    id: "nextask",
-    title: "nexTask",
-    description: "Group task-management web app.",
-    contribution: "Full DB design (11 tables, Prisma schema, PlantUML ER diagram) and backend architecture documentation.",
-    tags: ["PostgreSQL", "Prisma", "System Design", "UML"],
-    githubUrl: "https://github.com/username/nextask"
-  }
+
+
 ];

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+  import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FolderGit2, ExternalLink, Code, X, ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid } from 'lucide-react';
 import type { Project } from '../../data/projects';
@@ -27,8 +27,8 @@ const ProjectCard = ({ project, onClick }: { project: Project, onClick: () => vo
     
     {/* Project Image / Fallback */}
     <div className="w-full h-48 bg-background flex items-center justify-center border-b border-muted/20 overflow-hidden relative z-10">
-      {project.thumbnail ? (
-        <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+      {project.images && project.images.length > 0 ? (
+        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       ) : (
         <div className="flex flex-col items-center text-muted/30">
           <ImageIcon size={48} />
@@ -237,7 +237,7 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-[#283032]/90 backdrop-blur-[12px]"
               onClick={() => setSelectedProject(null)}
             />
             <motion.div 
@@ -253,10 +253,14 @@ export default function Projects() {
                 <X size={24} />
               </button>
 
-              {selectedProject.thumbnail && (
-                <div className="w-full h-48 md:h-64 -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10"></div>
-                  <img src={selectedProject.thumbnail} alt={selectedProject.title} className="w-full h-full object-cover" />
+              {selectedProject.images && selectedProject.images.length > 0 && (
+                <div className="w-full h-48 md:h-64 -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl relative flex overflow-x-auto snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {selectedProject.images.map((img: string, idx: number) => (
+                    <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
+                      <img src={img} alt={`${selectedProject.title} ${idx + 1}`} className="w-full h-full object-cover" />
+                    </div>
+                  ))}
                 </div>
               )}
 
