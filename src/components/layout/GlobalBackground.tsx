@@ -50,7 +50,7 @@ const TRACES = [
   { id: 19, d: "M-50,5240 L350,5240 L400,5290", color: "#226bb1", width: 1.5 },
   { id: 20, d: "M2280,4640 L2510,4640 L2560,4590", color: "#96d3e8", width: 1.5 },
   
-  // Extra dense aesthetic traces (thinner)
+  // Extra dense aesthetic traces (thinner) - ORIGINAL
   { id: 21, d: "M100,0 L100,150 L150,200 L250,200 L300,250 L300,300", color: "#226bb1", width: 1 },
   { id: 22, d: "M280,360 L280,650 L330,700 L750,700 L800,750 L800,1200", color: "#96d3e8", width: 1 },
   { id: 23, d: "M2220,600 L2220,550 L2170,500 L1850,500 L1800,450 L1800,-50", color: "#226bb1", width: 1 },
@@ -60,7 +60,29 @@ const TRACES = [
   { id: 27, d: "M160,1920 L160,2400 L210,2450 L260,2450 L300,2490 L300,2500", color: "#226bb1", width: 1.5 },
   { id: 28, d: "M1240,2880 L1240,3200 L1190,3250 L1100,3250 L1050,3300 L1050,3800", color: "#96d3e8", width: 1 },
   { id: 29, d: "M630,4260 L630,4800 L580,4850 L480,4850 L430,4900 L430,5200", color: "#226bb1", width: 1.5 },
-  { id: 30, d: "M1650,5580 L1650,5800 L1700,5850 L2000,5850 L2050,5900 L2050,6000", color: "#96d3e8", width: 2 }
+  { id: 30, d: "M1650,5580 L1650,5800 L1700,5850 L2000,5850 L2050,5900 L2050,6000", color: "#96d3e8", width: 2 },
+  
+  // NEW DENSE TRACES
+  { id: 31, d: "M2560,50 L2300,50 L2250,100 L2250,500 L2200,550 L2200,600", color: "#226bb1", width: 1 },
+  { id: 32, d: "M-50,500 L100,500 L150,550 L150,800 L200,850 L700,850 L750,900 L750,1200 L800,1250", color: "#96d3e8", width: 1.5 },
+  { id: 33, d: "M900,100 L1000,100 L1050,150 L1050,500 L1100,550 L1800,550 L1850,600 L1850,1800", color: "#226bb1", width: 1.5 },
+  { id: 34, d: "M560,1280 L650,1280 L700,1330 L700,2000 L750,2050 L1100,2050 L1150,2100 L1150,2800", color: "#96d3e8", width: 1 },
+  { id: 35, d: "M2300,650 L2400,650 L2450,700 L2450,1800 L2400,1850 L2300,1850", color: "#226bb1", width: 1.5 },
+  { id: 36, d: "M2560,1200 L2100,1200 L2050,1250 L2050,2800 L2000,2850 L1500,2850 L1450,2900 L1450,3800", color: "#96d3e8", width: 2 },
+  { id: 37, d: "M-50,1600 L100,1600 L150,1650 L150,1800", color: "#226bb1", width: 1 },
+  { id: 38, d: "M380,2600 L500,2600 L550,2650 L550,3100 L600,3150 L1200,3150 L1250,3200 L1250,3800", color: "#96d3e8", width: 1.5 },
+  { id: 39, d: "M2400,2060 L2400,2500 L2350,2550 L1500,2550 L1450,2600 L1450,2800", color: "#226bb1", width: 1.5 },
+  { id: 40, d: "M900,4000 L800,4000 L750,4050 L750,4800 L700,4850 L600,4850 L550,4900 L550,5200", color: "#96d3e8", width: 1 },
+  { id: 41, d: "M1000,4000 L1400,4000 L1450,4050 L1450,5000 L1500,5050 L2100,5050 L2150,5100 L2150,5900 L2200,5950 L2240,5950", color: "#226bb1", width: 1.5 },
+  { id: 42, d: "M2560,3500 L2200,3500 L2150,3550 L2150,4400 L2100,4450 L1700,4450 L1650,4500 L1650,5500", color: "#96d3e8", width: 1.5 },
+  { id: 43, d: "M2560,5200 L2400,5200 L2350,5250 L2350,5800 L2300,5850 L1800,5850 L1750,5900 L1750,6000", color: "#226bb1", width: 1 },
+  { id: 44, d: "M-50,4200 L150,4200 L200,4250 L200,5000 L250,5050 L400,5050 L450,5100 L450,5200", color: "#96d3e8", width: 1.5 },
+  { id: 45, d: "M660,4300 L800,4300 L850,4350 L850,5100 L900,5150 L1500,5150 L1550,5200 L1550,5500", color: "#226bb1", width: 1 },
+  { id: 46, d: "M-50,5800 L150,5800 L200,5850 L200,6000", color: "#96d3e8", width: 1.5 },
+  { id: 47, d: "M1240,3000 L1350,3000 L1400,3050 L1400,3500 L1450,3550 L1800,3550 L1850,3600 L1850,3800", color: "#226bb1", width: 1 },
+  { id: 48, d: "M240,400 L450,400 L500,450 L500,1000 L550,1050 L950,1050 L1000,1100 L1000,1800", color: "#96d3e8", width: 1.5 },
+  { id: 49, d: "M1480,480 L1800,480 L1850,530 L1850,1500 L1900,1550 L2100,1550 L2150,1600 L2150,1800", color: "#226bb1", width: 1 },
+  { id: 50, d: "M1000,4200 L1200,4200 L1250,4250 L1250,5200 L1300,5250 L1600,5250 L1650,5300 L1650,5500", color: "#96d3e8", width: 1.5 },
 ];
 
 // Nodes at trace junctions or bends
@@ -81,7 +103,17 @@ const NODES = [
   { x: 1800, y: 450 }, { x: 1860, y: 2750 }, { x: 1910, y: 2800 }, { x: 1950, y: 2800 },
   { x: 2000, y: 2850 }, { x: 340, y: 2950 }, { x: 390, y: 3000 }, { x: 850, y: 3000 },
   { x: 900, y: 3050 }, { x: 1950, y: 3880 }, { x: 2000, y: 3930 }, { x: 2000, y: 4550 },
-  { x: 2050, y: 4600 }
+  { x: 2050, y: 4600 },
+  // Extra nodes for new traces
+  { x: 2250, y: 100 }, { x: 2200, y: 550 }, { x: 150, y: 550 }, { x: 200, y: 850 }, { x: 750, y: 900 },
+  { x: 1050, y: 150 }, { x: 1100, y: 550 }, { x: 1850, y: 600 }, { x: 700, y: 1330 }, { x: 750, y: 2050 }, { x: 1150, y: 2100 },
+  { x: 2450, y: 700 }, { x: 2400, y: 1850 }, { x: 2050, y: 1250 }, { x: 2000, y: 2850 }, { x: 1450, y: 2900 },
+  { x: 150, y: 1650 }, { x: 550, y: 2650 }, { x: 600, y: 3150 }, { x: 1250, y: 3200 }, { x: 2350, y: 2550 }, { x: 1450, y: 2600 },
+  { x: 750, y: 4050 }, { x: 700, y: 4850 }, { x: 550, y: 4900 }, { x: 1450, y: 4050 }, { x: 1500, y: 5050 }, { x: 2150, y: 5100 }, { x: 2200, y: 5950 },
+  { x: 2150, y: 3550 }, { x: 2100, y: 4450 }, { x: 1650, y: 4500 }, { x: 2350, y: 5250 }, { x: 2300, y: 5850 }, { x: 1750, y: 5900 },
+  { x: 200, y: 4250 }, { x: 250, y: 5050 }, { x: 450, y: 5100 }, { x: 850, y: 4350 }, { x: 900, y: 5150 }, { x: 1550, y: 5200 },
+  { x: 200, y: 5850 }, { x: 1400, y: 3050 }, { x: 1450, y: 3550 }, { x: 1850, y: 3600 }, { x: 500, y: 450 }, { x: 550, y: 1050 }, { x: 1000, y: 1100 },
+  { x: 1850, y: 530 }, { x: 1900, y: 1550 }, { x: 2150, y: 1600 }, { x: 1250, y: 4250 }, { x: 1300, y: 5250 }, { x: 1650, y: 5300 }
 ];
 
 const TraceLine = ({ trace, scrollVelocity, prefersReducedMotion }: { trace: any, scrollVelocity: any, prefersReducedMotion: boolean | null }) => {
@@ -194,32 +226,45 @@ export default function GlobalBackground() {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-[6000px] z-0 pointer-events-none opacity-60">
+    <div className="absolute top-0 left-0 w-full h-[6000px] z-0 pointer-events-none opacity-60 overflow-hidden">
       {mounted && (
         <svg width="100%" height="100%" className="absolute inset-0" preserveAspectRatio="none" viewBox="0 0 2560 6000">
           
           {/* Base Traces & Pulses */}
-          {TRACES.map((trace) => (
-            <TraceLine 
-              key={trace.id} 
-              trace={trace} 
-              scrollVelocity={scrollVelocity} 
-              prefersReducedMotion={prefersReducedMotion} 
-            />
-          ))}
+          {TRACES.map((trace, index) => {
+            // Mobile pass: thin out the traces to reduce density/overhead without shrinking
+            if (isMobile && index % 2 !== 0) return null;
+            return (
+              <TraceLine 
+                key={trace.id} 
+                trace={trace} 
+                scrollVelocity={scrollVelocity} 
+                prefersReducedMotion={prefersReducedMotion} 
+              />
+            );
+          })}
 
           {/* Node Dots */}
-          {NODES.map((node, i) => (
-            <circle key={`node-${i}`} cx={node.x} cy={node.y} r="3" fill="#96d3e8" opacity={0.6} />
-          ))}
+          {NODES.map((node, i) => {
+            // Thin nodes on mobile similarly
+            if (isMobile && i % 2 !== 0) return null;
+            return (
+              <circle key={`node-${i}`} cx={node.x} cy={node.y} r="3" fill="#96d3e8" opacity={0.6} />
+            );
+          })}
 
-          {/* IC Blocks */}
+          {/* IC Blocks - Keep all IC blocks on mobile as requested */}
           {ICS.map((ic) => (
             <ICChip key={ic.id} ic={ic} />
           ))}
