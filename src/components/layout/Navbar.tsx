@@ -13,6 +13,26 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        // Nav bar height offset (~80px)
+        const offset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - offset;
+  
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+      setIsOpen(false);
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Projects', href: '#projects' },
@@ -32,7 +52,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#home" className="text-2xl font-mono font-bold text-white tracking-tighter hover:text-secondary transition-colors">
+        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-2xl font-mono font-bold text-white tracking-tighter hover:text-secondary transition-colors">
           <span className="text-primary">&lt;</span>
           IoT
           <span className="text-primary">/&gt;</span>
@@ -44,6 +64,7 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-muted hover:text-secondary font-mono text-sm uppercase tracking-wider relative group transition-colors"
             >
               {link.name}
@@ -76,7 +97,7 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-muted hover:text-secondary font-mono text-lg uppercase tracking-wider"
             >
               {link.name}
