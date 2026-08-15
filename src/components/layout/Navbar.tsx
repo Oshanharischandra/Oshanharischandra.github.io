@@ -15,20 +15,8 @@ export default function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        // Nav bar height offset (~80px)
-        const offset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - offset;
-  
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
+      // We no longer preventDefault here, allowing the browser to natively scroll to the ID.
+      // The smooth scrolling and offset are now natively handled by CSS (scroll-behavior: smooth and scroll-margin-top: 100px).
       setIsOpen(false);
     }
   };

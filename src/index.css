@@ -17,6 +17,9 @@
   body {
     @apply bg-background text-muted font-sans antialiased overflow-x-hidden;
   }
+  [id] {
+    scroll-margin-top: 100px;
+  }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-mono text-white;
