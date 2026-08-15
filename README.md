@@ -1,50 +1,97 @@
-# IoT/Embedded Systems Engineer Portfolio
+# Oshan Harischandra - IoT Engineer Portfolio
 
-A dark-themed, single-page personal portfolio website tailored for an IoT and Embedded Systems Engineer. Built with React, Vite, Tailwind CSS, and Framer Motion.
+Welcome to the source code for the personal portfolio of Oshan Harischandra. This site is a high-performance React application built with TypeScript, Vite, Tailwind CSS, and Framer Motion. It showcases a modern "hardware/cyberpunk" aesthetic featuring real-time PCB trace animations and IoT motifs.
 
-## 🚀 Getting Started Locally
+## 🚀 Local Development
 
-1. **Prerequisites**: Make sure you have Node.js (v18+) installed.
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Run the Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open your browser to `http://localhost:5173` to view the site.
+To run the site locally on your machine, simply execute:
 
-## 🛠 Adding a New Project
+```bash
+npm install
+npm run dev
+```
 
-The Projects section is completely data-driven. You do not need to edit any UI code to add a new project.
+The site will typically be available at `http://localhost:5173`.
 
-1. Open `src/data/projects.ts`.
-2. Add a new object to the `projectsData` array:
-   ```typescript
-   {
-     id: "my-new-project",
-     title: "My New Project",
-     description: "A short one-sentence description.",
-     longDescription: "A detailed paragraph explaining the project architecture and results.",
-     tags: ["ESP32", "C++", "MQTT"],
-     githubUrl: "https://github.com/username/repo",
-     demoUrl: "https://example.com" // Optional
-   }
-   ```
-3. Save the file. The UI will automatically update.
+---
 
-## 🚢 Deployment to GitHub Pages
+## 🛠 How to Add or Edit Projects
 
-This project is configured to deploy to `username.github.io` via GitHub Actions.
+All project data is managed in a single TypeScript file for easy maintainability. 
 
-1. Ensure your repository is named `username.github.io` (replace `username` with your GitHub username).
-2. Go to your repository **Settings** > **Pages**.
-3. Under **Build and deployment**, set the **Source** to **GitHub Actions**.
-4. Push your code to the `main` branch.
-5. The GitHub Action in `.github/workflows/deploy.yml` will automatically build and deploy your site to `https://username.github.io`.
+**File Path:** `src/data/projects.ts`
 
-## 🖼 Updating Your Information
-- **Photo**: Replace the placeholder in `src/components/sections/Hero.tsx`.
-- **Resume**: Replace the `public/resume.pdf` file with your actual PDF resume.
-- **Content**: Update your details in the components located under `src/components/sections/`.
+To add a new project, simply append a new object to the `projectsData` array. 
+
+### Data Structure Example:
+
+```typescript
+{
+  id: "my-new-project",
+  title: "New IoT Project",
+  description: "Brief summary for the project card.",
+  longDescription: "Detailed explanation of the project, architecture, and your specific role.",
+  tags: ["ESP32", "MQTT", "Hardware Design"],
+  githubUrl: "https://github.com/username/my-new-project",
+  demoUrl: "https://my-demo-link.com" // Optional
+}
+```
+
+*Note: You can omit `demoUrl` or `longDescription` if they are not applicable.*
+
+---
+
+## 🔧 How to Add or Edit Skills & Certifications
+
+### Technical Arsenal (Skills)
+Skills are categorized and mapped directly from a data file.
+
+**File Path:** `src/data/skills.ts`
+
+To add a new skill to an existing category, simply add the string to the `skills` array.
+To add a new category, add a new object:
+
+```typescript
+{
+  category: "Cloud / DevOps",
+  skills: ["AWS IoT Core", "Docker", "GitHub Actions"]
+}
+```
+
+### Certifications & Awards
+Certifications are currently managed inside the component file itself.
+
+**File Path:** `src/components/sections/Certifications.tsx`
+
+Locate the `certifications` array near the top of the file and add your new certificate:
+
+```typescript
+const certifications = [
+  // ... existing certs
+  {
+    id: 3,
+    title: "AWS Certified Solutions Architect",
+    issuer: "Amazon Web Services",
+    date: "2026",
+    description: "Achieved associate level certification for designing cloud architectures."
+  }
+];
+```
+
+---
+
+## 🌍 How to Publish Updates
+
+This portfolio is hosted using GitHub Pages (`gh-pages`). When you are ready to publish your local changes to the live `.io` site, run the following exact sequence of commands in your terminal:
+
+```bash
+# 1. Stage and commit your source code changes
+git add .
+git commit -m "feat: added new project and updated skills"
+git push origin main
+
+# 2. Build and deploy the production bundle to GitHub Pages
+npm run deploy
+```
+
+The `npm run deploy` command will automatically run TypeScript checks, build the optimized Vite bundle into the `dist/` directory, and push that bundle to the `gh-pages` branch. Your live site will update within 1-2 minutes!
