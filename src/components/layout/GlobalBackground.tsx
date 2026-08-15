@@ -21,141 +21,50 @@ const ICS = [
   { id: 'ic16', x: 1600, y: 5500, w: 100, h: 80 }
 ];
 
-// Dense trace network using only 45-degree and 90-degree transitions (real routing)
-// A corner like L200,100 L250,150 L250,300 ensures 45-deg chamfers
 const TRACES = [
-  // Top section
-  { id: 1, d: "M-50,330 L170,330 L200,360", color: "#226bb1", width: 2 },
-  { id: 2, d: "M260,330 L380,330 L430,280 L430,-50", color: "#96d3e8", width: 1.5 },
-  { id: 3, d: "M230,360 L230,450 L300,520 L750,520 L800,570 L800,800", color: "#226bb1", width: 1.5 },
-  { id: 4, d: "M900,190 L1350,190 L1400,240 L1400,400", color: "#96d3e8", width: 2 },
-  { id: 5, d: "M1480,440 L2160,440 L2200,480 L2200,600", color: "#226bb1", width: 2 },
-  { id: 6, d: "M2240,720 L2240,1150 L1890,1500 L1890,1800", color: "#96d3e8", width: 1.5 },
+  { id: 1, d: 'M 100,200 L 300,200 L 400,300 L 400,800 L 500,900 L 800,900 L 900,1000 L 900,1500', delay: 0 },
+  { id: 2, d: 'M 100,220 L 280,220 L 380,320 L 380,820 L 480,920 L 780,920 L 880,1020 L 880,1500', delay: 0.3 },
+  { id: 3, d: 'M 100,240 L 260,240 L 360,340 L 360,840 L 460,940 L 760,940 L 860,1040 L 860,1500', delay: 0.6 },
   
-  // Mid section 1
-  { id: 7, d: "M-50,1230 L450,1230 L500,1280", color: "#96d3e8", width: 2 },
-  { id: 8, d: "M560,1230 L750,1230 L800,1280 L800,1780 L850,1830 L1800,1830", color: "#226bb1", width: 1.5 },
-  { id: 9, d: "M1920,1830 L2250,1830 L2300,1880 L2300,2000", color: "#96d3e8", width: 1.5 },
-  { id: 10, d: "M530,1260 L530,2450 L480,2500 L380,2500", color: "#226bb1", width: 2 },
-  { id: 11, d: "M380,2540 L750,2540 L800,2590 L800,3100 L850,3150 L2000,3150", color: "#96d3e8", width: 1.5 },
-  { id: 12, d: "M2030,3200 L2030,3800 L1980,3850 L1000,3850", color: "#226bb1", width: 2 },
-  { id: 13, d: "M-50,2540 L250,2540 L300,2590", color: "#226bb1", width: 1.5 },
-  { id: 14, d: "M2060,3150 L2510,3150 L2560,3200", color: "#96d3e8", width: 1.5 },
+  { id: 4, d: 'M 2500,500 L 2200,500 L 2100,600 L 2100,1200 L 1700,1600 L 1200,1600 L 1100,1700 L 1100,2500', delay: 0.2 },
+  { id: 5, d: 'M 2500,520 L 2220,520 L 2120,620 L 2120,1220 L 1720,1620 L 1220,1620 L 1120,1720 L 1120,2500', delay: 0.5 },
+  { id: 6, d: 'M 2500,540 L 2240,540 L 2140,640 L 2140,1240 L 1740,1640 L 1240,1640 L 1140,1740 L 1140,2500', delay: 0.8 },
   
-  // Lower section
-  { id: 15, d: "M950,3900 L950,4590 L1000,4640 L2200,4640", color: "#96d3e8", width: 2 },
-  { id: 16, d: "M950,3900 L950,5190 L900,5240 L520,5240", color: "#226bb1", width: 1.5 },
-  { id: 17, d: "M460,5280 L460,5950 L410,6000", color: "#96d3e8", width: 2 },
-  { id: 18, d: "M2240,4680 L2240,5950 L2290,6000", color: "#226bb1", width: 1.5 },
-  { id: 19, d: "M-50,5240 L350,5240 L400,5290", color: "#226bb1", width: 1.5 },
-  { id: 20, d: "M2280,4640 L2510,4640 L2560,4590", color: "#96d3e8", width: 1.5 },
-  
-  // Extra dense aesthetic traces (thinner) - ORIGINAL
-  { id: 21, d: "M100,0 L100,150 L150,200 L250,200 L300,250 L300,300", color: "#226bb1", width: 1 },
-  { id: 22, d: "M280,360 L280,650 L330,700 L750,700 L800,750 L800,1200", color: "#96d3e8", width: 1 },
-  { id: 23, d: "M2220,600 L2220,550 L2170,500 L1850,500 L1800,450 L1800,-50", color: "#226bb1", width: 1 },
-  { id: 24, d: "M1860,1860 L1860,2750 L1910,2800 L1950,2800 L2000,2850 L2000,3100", color: "#96d3e8", width: 1 },
-  { id: 25, d: "M340,2580 L340,2950 L390,3000 L850,3000 L900,3050 L900,3800", color: "#226bb1", width: 1 },
-  { id: 26, d: "M1000,3880 L1950,3880 L2000,3930 L2000,4550 L2050,4600 L2200,4600", color: "#96d3e8", width: 1 },
-  { id: 27, d: "M160,1920 L160,2400 L210,2450 L260,2450 L300,2490 L300,2500", color: "#226bb1", width: 1.5 },
-  { id: 28, d: "M1240,2880 L1240,3200 L1190,3250 L1100,3250 L1050,3300 L1050,3800", color: "#96d3e8", width: 1 },
-  { id: 29, d: "M630,4260 L630,4800 L580,4850 L480,4850 L430,4900 L430,5200", color: "#226bb1", width: 1.5 },
-  { id: 30, d: "M1650,5580 L1650,5800 L1700,5850 L2000,5850 L2050,5900 L2050,6000", color: "#96d3e8", width: 2 },
-  
-  // NEW DENSE TRACES
-  { id: 31, d: "M2560,50 L2300,50 L2250,100 L2250,500 L2200,550 L2200,600", color: "#226bb1", width: 1 },
-  { id: 32, d: "M-50,500 L100,500 L150,550 L150,800 L200,850 L700,850 L750,900 L750,1200 L800,1250", color: "#96d3e8", width: 1.5 },
-  { id: 33, d: "M900,100 L1000,100 L1050,150 L1050,500 L1100,550 L1800,550 L1850,600 L1850,1800", color: "#226bb1", width: 1.5 },
-  { id: 34, d: "M560,1280 L650,1280 L700,1330 L700,2000 L750,2050 L1100,2050 L1150,2100 L1150,2800", color: "#96d3e8", width: 1 },
-  { id: 35, d: "M2300,650 L2400,650 L2450,700 L2450,1800 L2400,1850 L2300,1850", color: "#226bb1", width: 1.5 },
-  { id: 36, d: "M2560,1200 L2100,1200 L2050,1250 L2050,2800 L2000,2850 L1500,2850 L1450,2900 L1450,3800", color: "#96d3e8", width: 2 },
-  { id: 37, d: "M-50,1600 L100,1600 L150,1650 L150,1800", color: "#226bb1", width: 1 },
-  { id: 38, d: "M380,2600 L500,2600 L550,2650 L550,3100 L600,3150 L1200,3150 L1250,3200 L1250,3800", color: "#96d3e8", width: 1.5 },
-  { id: 39, d: "M2400,2060 L2400,2500 L2350,2550 L1500,2550 L1450,2600 L1450,2800", color: "#226bb1", width: 1.5 },
-  { id: 40, d: "M900,4000 L800,4000 L750,4050 L750,4800 L700,4850 L600,4850 L550,4900 L550,5200", color: "#96d3e8", width: 1 },
-  { id: 41, d: "M1000,4000 L1400,4000 L1450,4050 L1450,5000 L1500,5050 L2100,5050 L2150,5100 L2150,5900 L2200,5950 L2240,5950", color: "#226bb1", width: 1.5 },
-  { id: 42, d: "M2560,3500 L2200,3500 L2150,3550 L2150,4400 L2100,4450 L1700,4450 L1650,4500 L1650,5500", color: "#96d3e8", width: 1.5 },
-  { id: 43, d: "M2560,5200 L2400,5200 L2350,5250 L2350,5800 L2300,5850 L1800,5850 L1750,5900 L1750,6000", color: "#226bb1", width: 1 },
-  { id: 44, d: "M-50,4200 L150,4200 L200,4250 L200,5000 L250,5050 L400,5050 L450,5100 L450,5200", color: "#96d3e8", width: 1.5 },
-  { id: 45, d: "M660,4300 L800,4300 L850,4350 L850,5100 L900,5150 L1500,5150 L1550,5200 L1550,5500", color: "#226bb1", width: 1 },
-  { id: 46, d: "M-50,5800 L150,5800 L200,5850 L200,6000", color: "#96d3e8", width: 1.5 },
-  { id: 47, d: "M1240,3000 L1350,3000 L1400,3050 L1400,3500 L1450,3550 L1800,3550 L1850,3600 L1850,3800", color: "#226bb1", width: 1 },
-  { id: 48, d: "M240,400 L450,400 L500,450 L500,1000 L550,1050 L950,1050 L1000,1100 L1000,1800", color: "#96d3e8", width: 1.5 },
-  { id: 49, d: "M1480,480 L1800,480 L1850,530 L1850,1500 L1900,1550 L2100,1550 L2150,1600 L2150,1800", color: "#226bb1", width: 1 },
-  { id: 50, d: "M1000,4200 L1200,4200 L1250,4250 L1250,5200 L1300,5250 L1600,5250 L1650,5300 L1650,5500", color: "#96d3e8", width: 1.5 },
-];
+  { id: 7, d: 'M 50,2200 L 400,2200 L 500,2300 L 500,3200 L 900,3600 L 1400,3600 L 1500,3700 L 1500,4500', delay: 0.1 },
+  { id: 8, d: 'M 50,2220 L 380,2220 L 480,2320 L 480,3220 L 880,3620 L 1380,3620 L 1480,3720 L 1480,4500', delay: 0.4 },
+  { id: 9, d: 'M 50,2240 L 360,2240 L 460,2340 L 460,3240 L 860,3640 L 1360,3640 L 1460,3740 L 1460,4500', delay: 0.7 },
+  { id: 10, d: 'M 50,2260 L 340,2260 L 440,2360 L 440,3260 L 840,3660 L 1340,3660 L 1440,3760 L 1440,4500', delay: 1.0 },
+
+  { id: 11, d: 'M 2500,3800 L 2200,3800 L 2000,4000 L 2000,4800 L 1500,5300 L 1000,5300 L 900,5400 L 900,6000', delay: 0.3 },
+  { id: 12, d: 'M 2500,3820 L 2220,3820 L 2020,4020 L 2020,4820 L 1520,5320 L 1020,5320 L 920,5420 L 920,6000', delay: 0.6 },
+  { id: 13, d: 'M 2500,3840 L 2240,3840 L 2040,4040 L 2040,4840 L 1540,5340 L 1040,5340 L 940,5440 L 940,6000', delay: 0.9 },
+].map(t => ({...t, color: '#3a4649', width: 2}));
 
 // Nodes at trace junctions or bends
 const NODES = [
-  { x: 170, y: 330 }, { x: 380, y: 330 }, { x: 430, y: 280 },
-  { x: 230, y: 450 }, { x: 300, y: 520 }, { x: 750, y: 520 }, { x: 800, y: 570 },
-  { x: 1350, y: 190 }, { x: 1400, y: 240 }, { x: 2160, y: 440 }, { x: 2200, y: 480 },
-  { x: 2240, y: 1150 }, { x: 1890, y: 1500 }, { x: 450, y: 1230 }, { x: 750, y: 1230 },
-  { x: 800, y: 1280 }, { x: 800, y: 1780 }, { x: 850, y: 1830 }, { x: 2250, y: 1830 },
-  { x: 2300, y: 1880 }, { x: 530, y: 2450 }, { x: 480, y: 2500 }, { x: 750, y: 2540 },
-  { x: 800, y: 2590 }, { x: 800, y: 3100 }, { x: 850, y: 3150 }, { x: 2030, y: 3800 },
-  { x: 1980, y: 3850 }, { x: 250, y: 2540 }, { x: 2510, y: 3150 }, { x: 950, y: 4590 },
-  { x: 1000, y: 4640 }, { x: 950, y: 5190 }, { x: 900, y: 5240 }, { x: 460, y: 5950 },
-  { x: 410, y: 6000 }, { x: 2240, y: 5950 }, { x: 2290, y: 6000 }, { x: 350, y: 5240 },
-  { x: 2510, y: 4640 }, { x: 100, y: 150 }, { x: 150, y: 200 }, { x: 250, y: 200 },
-  { x: 300, y: 250 }, { x: 280, y: 650 }, { x: 330, y: 700 }, { x: 750, y: 700 },
-  { x: 800, y: 750 }, { x: 2220, y: 550 }, { x: 2170, y: 500 }, { x: 1850, y: 500 },
-  { x: 1800, y: 450 }, { x: 1860, y: 2750 }, { x: 1910, y: 2800 }, { x: 1950, y: 2800 },
-  { x: 2000, y: 2850 }, { x: 340, y: 2950 }, { x: 390, y: 3000 }, { x: 850, y: 3000 },
-  { x: 900, y: 3050 }, { x: 1950, y: 3880 }, { x: 2000, y: 3930 }, { x: 2000, y: 4550 },
-  { x: 2050, y: 4600 },
-  // Extra nodes for new traces
-  { x: 2250, y: 100 }, { x: 2200, y: 550 }, { x: 150, y: 550 }, { x: 200, y: 850 }, { x: 750, y: 900 },
-  { x: 1050, y: 150 }, { x: 1100, y: 550 }, { x: 1850, y: 600 }, { x: 700, y: 1330 }, { x: 750, y: 2050 }, { x: 1150, y: 2100 },
-  { x: 2450, y: 700 }, { x: 2400, y: 1850 }, { x: 2050, y: 1250 }, { x: 2000, y: 2850 }, { x: 1450, y: 2900 },
-  { x: 150, y: 1650 }, { x: 550, y: 2650 }, { x: 600, y: 3150 }, { x: 1250, y: 3200 }, { x: 2350, y: 2550 }, { x: 1450, y: 2600 },
-  { x: 750, y: 4050 }, { x: 700, y: 4850 }, { x: 550, y: 4900 }, { x: 1450, y: 4050 }, { x: 1500, y: 5050 }, { x: 2150, y: 5100 }, { x: 2200, y: 5950 },
-  { x: 2150, y: 3550 }, { x: 2100, y: 4450 }, { x: 1650, y: 4500 }, { x: 2350, y: 5250 }, { x: 2300, y: 5850 }, { x: 1750, y: 5900 },
-  { x: 200, y: 4250 }, { x: 250, y: 5050 }, { x: 450, y: 5100 }, { x: 850, y: 4350 }, { x: 900, y: 5150 }, { x: 1550, y: 5200 },
-  { x: 200, y: 5850 }, { x: 1400, y: 3050 }, { x: 1450, y: 3550 }, { x: 1850, y: 3600 }, { x: 500, y: 450 }, { x: 550, y: 1050 }, { x: 1000, y: 1100 },
-  { x: 1850, y: 530 }, { x: 1900, y: 1550 }, { x: 2150, y: 1600 }, { x: 1250, y: 4250 }, { x: 1300, y: 5250 }, { x: 1650, y: 5300 }
+  // Bus 1
+  { x: 100, y: 200 }, { x: 900, y: 1500 },
+  { x: 100, y: 220 }, { x: 880, y: 1500 },
+  { x: 100, y: 240 }, { x: 860, y: 1500 },
+  
+  // Bus 2
+  { x: 2500, y: 500 }, { x: 1100, y: 2500 },
+  { x: 2500, y: 520 }, { x: 1120, y: 2500 },
+  { x: 2500, y: 540 }, { x: 1140, y: 2500 },
+  
+  // Bus 3
+  { x: 50, y: 2200 }, { x: 1500, y: 4500 },
+  { x: 50, y: 2220 }, { x: 1480, y: 4500 },
+  { x: 50, y: 2240 }, { x: 1460, y: 4500 },
+  { x: 50, y: 2260 }, { x: 1440, y: 4500 },
+
+  // Bus 4
+  { x: 2500, y: 3800 }, { x: 900, y: 6000 },
+  { x: 2500, y: 3820 }, { x: 920, y: 6000 },
+  { x: 2500, y: 3840 }, { x: 940, y: 6000 },
 ];
 
-const TraceLine = ({ trace, scrollVelocity, prefersReducedMotion }: { trace: any, scrollVelocity: any, prefersReducedMotion: boolean | null }) => {
-  const controls = useAnimation();
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const firePulse = async () => {
-    if (prefersReducedMotion) return;
-    
-    // High chance to fire to keep board active
-    if (Math.random() > 0.3) {
-      await controls.start({
-        strokeDashoffset: [2500, -500],
-        opacity: [0, 1, 1, 0],
-        transition: { duration: 1.2, ease: "linear" }
-      });
-    }
-    
-    // Schedule next pulse much quicker for active board (1.5s to 4s)
-    const nextInterval = 1500 + Math.random() * 2500;
-    timeoutRef.current = setTimeout(firePulse, nextInterval);
-  };
-
-  useEffect(() => {
-    if (!prefersReducedMotion) {
-      timeoutRef.current = setTimeout(firePulse, Math.random() * 2000);
-    }
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [prefersReducedMotion]);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-    const unsubscribe = scrollVelocity.on("change", (latest: number) => {
-      if (Math.abs(latest) > 150 && Math.random() > 0.8) {
-        firePulse();
-      }
-    });
-    return unsubscribe;
-  }, [scrollVelocity, prefersReducedMotion]);
-
+const TraceLine = ({ trace, prefersReducedMotion }: { trace: any, prefersReducedMotion: boolean | null }) => {
   return (
     <g>
       {/* Base static trace */}
@@ -176,9 +85,15 @@ const TraceLine = ({ trace, scrollVelocity, prefersReducedMotion }: { trace: any
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeDasharray="150 3000"
-        initial={{ strokeDashoffset: 2500, opacity: 0 }}
-        animate={controls}
+        strokeDasharray="200 4000"
+        initial={{ strokeDashoffset: 4000, opacity: 0 }}
+        animate={prefersReducedMotion ? { opacity: 0 } : { strokeDashoffset: [4000, -1000], opacity: [0, 1, 1, 0] }}
+        transition={{
+          duration: 3,
+          ease: "linear",
+          repeat: Infinity,
+          delay: trace.delay,
+        }}
         style={{ filter: `drop-shadow(0 0 10px #96d3e8)` }}
       />
     </g>
@@ -249,7 +164,6 @@ export default function GlobalBackground() {
               <TraceLine 
                 key={trace.id} 
                 trace={trace} 
-                scrollVelocity={scrollVelocity} 
                 prefersReducedMotion={prefersReducedMotion} 
               />
             );
