@@ -22,6 +22,7 @@ const ICS = [
 ];
 
 const TRACES = [
+  // Original 13 Bus Traces
   { id: 1, d: 'M 100,200 L 300,200 L 400,300 L 400,800 L 500,900 L 800,900 L 900,1000 L 900,1500', delay: 0 },
   { id: 2, d: 'M 100,220 L 280,220 L 380,320 L 380,820 L 480,920 L 780,920 L 880,1020 L 880,1500', delay: 0.3 },
   { id: 3, d: 'M 100,240 L 260,240 L 360,340 L 360,840 L 460,940 L 760,940 L 860,1040 L 860,1500', delay: 0.6 },
@@ -38,6 +39,33 @@ const TRACES = [
   { id: 11, d: 'M 2500,3800 L 2200,3800 L 2000,4000 L 2000,4800 L 1500,5300 L 1000,5300 L 900,5400 L 900,6000', delay: 0.3 },
   { id: 12, d: 'M 2500,3820 L 2220,3820 L 2020,4020 L 2020,4820 L 1520,5320 L 1020,5320 L 920,5420 L 920,6000', delay: 0.6 },
   { id: 13, d: 'M 2500,3840 L 2240,3840 L 2040,4040 L 2040,4840 L 1540,5340 L 1040,5340 L 940,5440 L 940,6000', delay: 0.9 },
+
+  // Bus 5 - Center Vertical
+  { id: 14, d: 'M 800,0 L 800,1000 L 1200,1400 L 1200,3000 L 800,3400 L 800,6000', delay: 0.1 },
+  { id: 15, d: 'M 820,0 L 820,1000 L 1220,1400 L 1220,3000 L 820,3400 L 820,6000', delay: 0.4 },
+  { id: 16, d: 'M 840,0 L 840,1000 L 1240,1400 L 1240,3000 L 840,3400 L 840,6000', delay: 0.7 },
+  { id: 17, d: 'M 860,0 L 860,1000 L 1260,1400 L 1260,3000 L 860,3400 L 860,6000', delay: 1.0 },
+
+  // Bus 6 - Far Left Side
+  { id: 18, d: 'M 0,500 L 100,600 L 100,1800 L 0,1900 L 0,3000', delay: 0.2 },
+  { id: 19, d: 'M 0,520 L 120,640 L 120,1820 L 0,1940 L 0,3000', delay: 0.5 },
+  { id: 20, d: 'M 0,540 L 140,680 L 140,1840 L 0,1980 L 0,3000', delay: 0.8 },
+
+  // Bus 7 - Center Middle Crossing
+  { id: 21, d: 'M 500,2000 L 1500,2000 L 1800,2300 L 1800,3000 L 1500,3300 L 500,3300 L 200,3600 L 200,4500', delay: 0 },
+  { id: 22, d: 'M 500,2020 L 1480,2020 L 1780,2320 L 1780,2980 L 1480,3280 L 500,3280 L 220,3560 L 220,4500', delay: 0.3 },
+  { id: 23, d: 'M 500,2040 L 1460,2040 L 1760,2340 L 1760,2960 L 1460,3260 L 500,3260 L 240,3520 L 240,4500', delay: 0.6 },
+  { id: 24, d: 'M 500,2060 L 1440,2060 L 1740,2360 L 1740,2940 L 1440,3240 L 500,3240 L 260,3480 L 260,4500', delay: 0.9 },
+
+  // Bus 8 - Far Right Top to Center
+  { id: 25, d: 'M 2560,800 L 1800,800 L 1500,1100 L 1500,2200 L 2000,2700 L 2560,2700', delay: 0.1 },
+  { id: 26, d: 'M 2560,820 L 1780,820 L 1480,1120 L 1480,2180 L 1980,2680 L 2560,2680', delay: 0.4 },
+  { id: 27, d: 'M 2560,840 L 1760,840 L 1460,1140 L 1460,2160 L 1960,2660 L 2560,2660', delay: 0.7 },
+
+  // Bus 9 - Center to Bottom Right
+  { id: 28, d: 'M 1000,4000 L 1500,4000 L 2000,4500 L 2000,5500 L 2500,6000', delay: 0.2 },
+  { id: 29, d: 'M 1000,4020 L 1480,4020 L 1980,4520 L 1980,5480 L 2500,6000', delay: 0.5 },
+  { id: 30, d: 'M 1000,4040 L 1460,4040 L 1960,4540 L 1960,5460 L 2500,6000', delay: 0.8 },
 ].map(t => ({...t, color: '#3a4649', width: 2}));
 
 // Nodes at trace junctions or bends
@@ -154,7 +182,7 @@ export default function GlobalBackground() {
   return (
     <div className="absolute top-0 left-0 w-full h-[6000px] z-0 pointer-events-none opacity-60 overflow-hidden">
       {mounted && (
-        <svg width="100%" height="100%" className="absolute inset-0" preserveAspectRatio="none" viewBox="0 0 2560 6000">
+        <svg width="100%" height="100%" className="absolute inset-0" preserveAspectRatio="xMidYMid slice" viewBox="0 0 2560 6000">
           
           {/* Base Traces & Pulses */}
           {TRACES.map((trace, index) => {
