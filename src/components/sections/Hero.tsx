@@ -30,7 +30,7 @@ export default function Hero() {
             Aspiring IoT Engineer
           </h2>
             <p className="text-muted text-lg leading-relaxed max-w-xl mx-auto md:mx-0 drop-shadow-md font-medium">
-              I study at the University of Kelaniya, Faculty of Science, Department of Industrial Management, in a MIT/IT program, with a hands-on focus on IoT and embedded systems (ESP32/Arduino/STM32 projects, PCB design, sensors).
+              I study at the University of Kelaniya, Faculty of Science, Department of Industrial Management, in a IT program, with a hands-on focus on IT and IoT /embedded systems (ESP32/Arduino/STM32 projects, CAD/PCB design).
             </p>
             
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
