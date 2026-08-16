@@ -37,6 +37,32 @@ const TRACES = [
   { id: 30, d: 'M 2560,5000 L 2000,5000 L 1800,5200 L 1800,5800 L 2200,6000', delay: 0, pulse: false },
 ].map(t => ({...t, color: '#3a4649', width: 2, pulse: t.pulse !== false}));
 
+const MOBILE_TRACES = [
+  // Pulsing lines (5)
+  { id: 101, d: 'M 1100,0 L 1100,800 L 1200,1100 L 1200,2000 L 1100,2400 L 1100,6000', delay: 0, pulse: true },
+  { id: 102, d: 'M 1400,0 L 1400,1200 L 1300,1500 L 1300,2500 L 1450,2900 L 1450,6000', delay: 0.2, pulse: true },
+  { id: 103, d: 'M 1250,500 L 1150,800 L 1150,1800 L 1350,2200 L 1350,4000 L 1200,4500 L 1200,6000', delay: 0.4, pulse: true },
+  { id: 104, d: 'M 1050,1000 L 1150,1300 L 1150,3000 L 1050,3400 L 1050,5000 L 1150,5500 L 1150,6000', delay: 0.1, pulse: true },
+  { id: 105, d: 'M 1500,1500 L 1400,1800 L 1400,3500 L 1500,3800 L 1500,4800 L 1350,5200 L 1350,6000', delay: 0.5, pulse: true },
+  
+  // Static lines (15)
+  { id: 106, d: 'M 1180,0 L 1180,600 L 1080,900 L 1080,1500 L 1180,1800 L 1180,2500 L 1280,2800 L 1280,6000', delay: 0, pulse: false },
+  { id: 107, d: 'M 1320,0 L 1320,700 L 1420,1000 L 1420,1600 L 1220,2000 L 1220,2800 L 1320,3100 L 1320,6000', delay: 0, pulse: false },
+  { id: 108, d: 'M 1120,200 L 1220,500 L 1220,1400 L 1120,1800 L 1120,2600 L 1320,3000 L 1320,6000', delay: 0, pulse: false },
+  { id: 109, d: 'M 1480,300 L 1380,600 L 1380,1500 L 1480,1900 L 1480,2700 L 1280,3100 L 1280,6000', delay: 0, pulse: false },
+  { id: 110, d: 'M 1020,400 L 1120,700 L 1120,1600 L 1020,2000 L 1020,2800 L 1220,3200 L 1220,6000', delay: 0, pulse: false },
+  { id: 111, d: 'M 1250,800 L 1150,1100 L 1150,2000 L 1250,2400 L 1250,3200 L 1150,3600 L 1150,6000', delay: 0, pulse: false },
+  { id: 112, d: 'M 1350,900 L 1450,1200 L 1450,2100 L 1350,2500 L 1350,3300 L 1450,3700 L 1450,6000', delay: 0, pulse: false },
+  { id: 113, d: 'M 1150,1200 L 1250,1500 L 1250,2400 L 1150,2800 L 1150,3600 L 1250,4000 L 1250,6000', delay: 0, pulse: false },
+  { id: 114, d: 'M 1450,1300 L 1350,1600 L 1350,2500 L 1450,2900 L 1450,3700 L 1350,4100 L 1350,6000', delay: 0, pulse: false },
+  { id: 115, d: 'M 1080,1600 L 1180,1900 L 1180,2800 L 1080,3200 L 1080,4000 L 1180,4400 L 1180,6000', delay: 0, pulse: false },
+  { id: 116, d: 'M 1420,1700 L 1320,2000 L 1320,2900 L 1420,3300 L 1420,4100 L 1320,4500 L 1320,6000', delay: 0, pulse: false },
+  { id: 117, d: 'M 1180,2000 L 1280,2300 L 1280,3200 L 1180,3600 L 1180,4400 L 1280,4800 L 1280,6000', delay: 0, pulse: false },
+  { id: 118, d: 'M 1320,2100 L 1420,2400 L 1420,3300 L 1320,3700 L 1320,4500 L 1420,4900 L 1420,6000', delay: 0, pulse: false },
+  { id: 119, d: 'M 1220,2400 L 1120,2700 L 1120,3600 L 1220,4000 L 1220,4800 L 1120,5200 L 1120,6000', delay: 0, pulse: false },
+  { id: 120, d: 'M 1280,2500 L 1380,2800 L 1380,3700 L 1280,4100 L 1280,4900 L 1380,5300 L 1380,6000', delay: 0, pulse: false },
+].map(t => ({...t, color: '#3a4649', width: 2, pulse: t.pulse !== false}));
+
 // Nodes at trace junctions or bends
 const NODES = [
   { x: 100, y: 200 }, { x: 900, y: 1500 },
@@ -135,9 +161,7 @@ export default function GlobalBackground() {
         <svg width="100%" height="100%" className="absolute inset-0" preserveAspectRatio="xMidYMid slice" viewBox="0 0 2560 6000">
           
           {/* Base Traces & Pulses */}
-          {TRACES.map((trace, index) => {
-            // Mobile pass: thin out the traces to reduce density/overhead without shrinking
-            if (isMobile && index % 2 !== 0) return null;
+          {(isMobile ? MOBILE_TRACES : TRACES).map((trace) => {
             return (
               <TraceLine 
                 key={trace.id} 

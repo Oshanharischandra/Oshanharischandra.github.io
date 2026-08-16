@@ -34,6 +34,22 @@ export const certifications: Certification[] = [
     issuer: "Industrial Management",
     date: "2026",
     description: "Designed SafeX Wearable Health Monitor as part of Team MIZU.",
+  },
+  {
+    id: 3,
+    title: "Codeunio Hackathon",
+    issuer: "Codeunio",
+    date: "25 MAR 2023",
+    description: "Secured 3rd Place.",
+    images: []
+  },
+  {
+    id: 4,
+    title: "Merit Selection & 3-Day Tech Session",
+    issuer: "Tech Session",
+    date: "2023",
+    description: "Secured a coveted spot within the top 80 out of 1000+ applicants, culminating in an exclusive 3-day session.",
+    images: []
   }
 ];
 
