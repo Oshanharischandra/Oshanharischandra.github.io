@@ -113,6 +113,7 @@ export default function Certifications() {
     setIsHovering,
     handleNext,
     handlePrev,
+    swipeHandlers,
   } = useCarousel(
     certifications.length,
     (width) => {
@@ -158,6 +159,7 @@ export default function Certifications() {
               onMouseLeave={() => setIsHovering(false)}
               onFocus={() => setIsHovering(true)}
               onBlur={() => setIsHovering(false)}
+              {...swipeHandlers}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px]">
                 <AnimatePresence mode="wait">

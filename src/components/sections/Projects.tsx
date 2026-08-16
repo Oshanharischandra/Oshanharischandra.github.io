@@ -107,6 +107,7 @@ export default function Projects() {
     setIsHovering,
     handleNext,
     handlePrev,
+    swipeHandlers,
   } = useCarousel(
     shuffledProjects.length,
     (width) => width >= 768 ? 2 : 1,
@@ -149,6 +150,7 @@ export default function Projects() {
               onMouseLeave={() => setIsHovering(false)}
               onFocus={() => setIsHovering(true)}
               onBlur={() => setIsHovering(false)}
+              {...swipeHandlers}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[480px]">
                 <AnimatePresence mode="wait">

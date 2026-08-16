@@ -40,6 +40,7 @@ export default function Experience() {
     setIsHovering,
     handleNext,
     handlePrev,
+    swipeHandlers,
   } = useCarousel(
     experiences.length,
     (width) => width >= 768 ? 2 : 1,
@@ -70,6 +71,7 @@ export default function Experience() {
             onMouseLeave={() => setIsHovering(false)}
             onFocus={() => setIsHovering(true)}
             onBlur={() => setIsHovering(false)}
+            {...swipeHandlers}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[300px]">
               <AnimatePresence mode="wait">

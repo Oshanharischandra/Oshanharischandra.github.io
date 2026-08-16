@@ -11,6 +11,7 @@ export default function Skills() {
     setIsHovering,
     handleNext,
     handlePrev,
+    swipeHandlers,
   } = useCarousel(
     skillsData.length,
     (width) => {
@@ -45,6 +46,7 @@ export default function Skills() {
             onMouseLeave={() => setIsHovering(false)}
             onFocus={() => setIsHovering(true)}
             onBlur={() => setIsHovering(false)}
+            {...swipeHandlers}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[200px]">
               <AnimatePresence mode="wait">

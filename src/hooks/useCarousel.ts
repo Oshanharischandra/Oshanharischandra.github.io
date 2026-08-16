@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, TouchEvent } from 'react';
 
 export function useCarousel(
   totalItems: number,
@@ -9,6 +9,8 @@ export function useCarousel(
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [cardsPerView, setCardsPerView] = useState(1);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Responsive cards per view logic
   useEffect(() => {
@@ -40,11 +42,39 @@ export function useCarousel(
     return () => clearInterval(timer);
   }, [isHovering, isPausedExternally, totalItems, cardsPerView, intervalMs]);
 
+  const onTouchStart = useCallback((e: TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsHovering(true);
+  }, []);
+
+  const onTouchMove = useCallback((e: TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  }, []);
+
+  const onTouchEndEvent = useCallback(() => {
+    setIsHovering(false);
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+    
+    if (distance > minSwipeDistance) {
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      prevSlide();
+    }
+  }, [touchStart, touchEnd, nextSlide, prevSlide]);
+
   return {
     carouselIndex,
     cardsPerView,
     setIsHovering,
     handleNext: nextSlide,
     handlePrev: prevSlide,
+    swipeHandlers: {
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd: onTouchEndEvent,
+    }
   };
 }
