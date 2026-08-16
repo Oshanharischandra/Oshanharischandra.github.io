@@ -18,17 +18,31 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // If the document is already fully loaded, hide loader immediately
+    if (document.readyState === 'complete') {
       setLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
+      return;
+    }
+
+    const handleLoad = () => setLoading(false);
+    window.addEventListener('load', handleLoad);
+
+    // Safety fallback: force hide loader after 3 seconds
+    const fallbackTimer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => {
+      window.removeEventListener('load', handleLoad);
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center relative overflow-hidden">
         <div className="relative z-10 flex flex-col items-center animate-pulse" style={{ willChange: 'opacity, filter', filter: 'drop-shadow(0 0 20px rgba(150, 211, 232, 0.4))' }}>
-           <Cpu size={64} className="text-secondary animate-[spin_3s_linear_infinite] mb-6" style={{ willChange: 'transform' }} />
+           <Cpu size={64} className="text-secondary mb-6" />
            <p className="text-secondary font-mono mt-4 tracking-widest text-lg">
              {'<Oshan_Harischandra/>'}
              <span className="loading-dots"></span>

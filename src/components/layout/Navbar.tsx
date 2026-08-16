@@ -40,9 +40,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-2xl font-mono font-bold text-white tracking-tighter hover:text-secondary transition-colors">
+        <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-lg md:text-xl font-mono font-bold text-white tracking-tighter hover:text-secondary transition-colors">
           <span className="text-primary">&lt;</span>
-          IoT
+          Oshan Harischandra
           <span className="text-primary">/&gt;</span>
         </a>
 
