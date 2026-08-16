@@ -6,10 +6,10 @@ export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col-reverse md:flex-row items-center justify-between z-10 pt-20 md:pt-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-24 z-10 pt-20 md:pt-0">
         
         {/* Left: Text */}
         <motion.div 
@@ -43,17 +43,16 @@ export default function Hero() {
             </div>
           </div>
         </motion.div>
+        {/* Right: Profile Frame Container */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="w-full md:w-1/2 flex justify-center items-center mt-12 md:mt-0 relative z-10"
+        >
+          <ProfileFrame />
+        </motion.div>
       </div>
-
-      {/* Right: Profile Frame Container */}
-      <motion.div 
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="w-full md:w-1/2 flex justify-center items-center mt-12 md:mt-0 relative z-10"
-      >
-        <ProfileFrame />
-      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div 

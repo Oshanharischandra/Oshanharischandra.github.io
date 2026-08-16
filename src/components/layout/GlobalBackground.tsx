@@ -16,9 +16,18 @@ const TRACES = [
   { id: 4, d: 'M 2500,500 L 2200,500 L 2100,600 L 2100,1200 L 1700,1600 L 1200,1600 L 1100,1700 L 1100,2500', delay: 0.2 },
   { id: 5, d: 'M 2500,520 L 2220,520 L 2120,620 L 2120,1220 L 1720,1620 L 1220,1620 L 1120,1720 L 1120,2500', delay: 0.5 },
   { id: 7, d: 'M 50,2200 L 400,2200 L 500,2300 L 500,3200 L 900,3600 L 1400,3600 L 1500,3700 L 1500,4500', delay: 0.1 },
-  { id: 11, d: 'M 2500,3800 L 2200,3800 L 2000,4000 L 2000,4800 L 1500,5300 L 1000,5300 L 900,5400 L 900,6000', delay: 0.3 },
-  { id: 14, d: 'M 800,0 L 800,1000 L 1200,1400 L 1200,3000 L 800,3400 L 800,6000', delay: 0.1 },
-].map(t => ({...t, color: '#3a4649', width: 2}));
+  { id: 11, d: 'M 2500,3800 L 2200,3800 L 2000,4000 L 2000,4800 L 1500,5300 L 1000,5300 L 900,5400 L 900,6000', delay: 0.3, pulse: true },
+  { id: 14, d: 'M 800,0 L 800,1000 L 1200,1400 L 1200,3000 L 800,3400 L 800,6000', delay: 0.1, pulse: true },
+  // Extra static traces to fill empty space
+  { id: 15, d: 'M 300,0 L 300,500 L 600,800 L 600,1400 L 200,1800 L 200,2400', delay: 0, pulse: false },
+  { id: 16, d: 'M 2200,0 L 2200,700 L 1800,1100 L 1800,2000 L 2400,2600 L 2400,3500', delay: 0, pulse: false },
+  { id: 17, d: 'M 0,1000 L 300,1000 L 500,1200 L 500,2000 L 800,2300 L 1200,2300 L 1400,2500', delay: 0, pulse: false },
+  { id: 18, d: 'M 2560,1500 L 2000,1500 L 1800,1700 L 1800,2500 L 1400,2900 L 1000,2900', delay: 0, pulse: false },
+  { id: 19, d: 'M 500,2600 L 800,2600 L 1100,2900 L 1100,4000 L 600,4500 L 600,5200', delay: 0, pulse: false },
+  { id: 20, d: 'M 2000,2800 L 2000,3400 L 1600,3800 L 1600,4500 L 2200,5100 L 2200,6000', delay: 0, pulse: false },
+  { id: 21, d: 'M 0,3200 L 400,3200 L 700,3500 L 700,4400 L 1100,4800 L 1400,4800', delay: 0, pulse: false },
+  { id: 22, d: 'M 2560,4200 L 2100,4200 L 1800,4500 L 1800,5500 L 1500,5800 L 1500,6000', delay: 0, pulse: false },
+].map(t => ({...t, color: '#3a4649', width: 2, pulse: t.pulse !== false}));
 
 // Nodes at trace junctions or bends
 const NODES = [
@@ -41,10 +50,10 @@ const TraceLine = ({ trace, prefersReducedMotion }: { trace: any, prefersReduced
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity={0.3}
+        opacity={0.08}
       />
       {/* Animated pulse trace */}
-      {!prefersReducedMotion && (
+      {!prefersReducedMotion && trace.pulse && (
         <path
           d={trace.d}
           stroke="#96d3e8"
