@@ -27,9 +27,12 @@ function App() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center relative overflow-hidden">
-        <div className="relative z-10 flex flex-col items-center">
-           <Cpu size={64} className="text-secondary animate-pulse mb-6 drop-shadow-[0_0_15px_#96d3e8]" style={{ willChange: 'opacity' }} />
-           <p className="text-muted font-mono mt-4 tracking-widest text-sm uppercase animate-pulse" style={{ willChange: 'opacity' }}>Initializing Systems...</p>
+        <div className="relative z-10 flex flex-col items-center animate-pulse" style={{ willChange: 'opacity, filter', filter: 'drop-shadow(0 0 20px rgba(150, 211, 232, 0.4))' }}>
+           <Cpu size={64} className="text-secondary animate-[spin_3s_linear_infinite] mb-6" style={{ willChange: 'transform' }} />
+           <p className="text-secondary font-mono mt-4 tracking-widest text-lg">
+             {'<Oshan_Harischandra/>'}
+             <span className="loading-dots"></span>
+           </p>
         </div>
       </div>
     );

@@ -40,13 +40,24 @@
   100% { stroke-dashoffset: -1000; opacity: 0; }
 }
 .animate-pulse-trace {
-  animation: pulse-trace 3s linear infinite;
+  animation: pulse-trace 5s linear infinite;
   will-change: transform, opacity;
 }
 
 @keyframes loading {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes loading-dots {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+  100% { content: ""; }
+}
+.loading-dots::after {
+  content: "";
+  animation: loading-dots 1.5s infinite steps(1);
 }
 
 @keyframes float-icon {

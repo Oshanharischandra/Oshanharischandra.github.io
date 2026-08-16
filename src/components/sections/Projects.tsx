@@ -1,6 +1,6 @@
   import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { FolderGit2, ExternalLink, Code, X, ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid } from 'lucide-react';
+import { FolderGit2, ExternalLink, Code, X, ChevronLeft, ChevronRight, Image as ImageIcon, LayoutGrid, Maximize, Minimize } from 'lucide-react';
 import type { Project } from '../../data/projects';
 import { projectsData } from '../../data/projects';
 
@@ -88,6 +88,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     setShuffledProjects(shuffleArray(projectsData));
@@ -153,7 +154,7 @@ export default function Projects() {
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="h-full"
                     >
-                      <ProjectCard project={project} onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); }} />
+                      <ProjectCard project={project} onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setIsFullscreen(false); }} />
                     </motion.div>
                   ))}
                 </AnimatePresence>
@@ -221,7 +222,7 @@ export default function Projects() {
                   <ProjectCard 
                     key={project.id} 
                     project={project} 
-                    onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); }} 
+                    onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); setIsFullscreen(false); }} 
                   />
                 ))}
               </div>
@@ -255,32 +256,56 @@ export default function Projects() {
               </button>
 
               {selectedProject.images && selectedProject.images.length > 0 && (
-                <div className="w-full h-48 md:h-64 -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
-                  <img 
-                    src={selectedProject.images[currentImageIndex]} 
-                    alt={`${selectedProject.title} ${currentImageIndex + 1}`} 
-                    className="w-full h-full object-cover" 
-                  />
-                  
+                <div className="w-full -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl relative">
+                  <div className="w-full h-48 md:h-80 bg-black/40 relative overflow-hidden group flex items-center justify-center">
+                    <img 
+                      src={selectedProject.images[currentImageIndex]} 
+                      alt={`${selectedProject.title} ${currentImageIndex + 1}`} 
+                      className="w-full h-full object-contain" 
+                    />
+                    
+                    <button
+                      onClick={() => setIsFullscreen(true)}
+                      className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                      title="View Fullscreen"
+                    >
+                      <Maximize size={20} />
+                    </button>
+
+                    {selectedProject.images.length > 1 && (
+                      <>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => prev === 0 ? selectedProject.images!.length - 1 : prev - 1); }}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (selectedProject.images && prev === selectedProject.images.length - 1) ? 0 : prev + 1); }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/50 px-3 py-1 rounded-full text-white text-xs font-mono">
+                          {currentImageIndex + 1} / {selectedProject.images.length}
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Thumbnail Row */}
                   {selectedProject.images.length > 1 && (
-                    <>
-                      <button 
-                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => prev === 0 ? selectedProject.images!.length - 1 : prev - 1); }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
-                      >
-                        <ChevronLeft size={20} />
-                      </button>
-                      <button 
-                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (selectedProject.images && prev === selectedProject.images.length - 1) ? 0 : prev + 1); }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
-                      >
-                        <ChevronRight size={20} />
-                      </button>
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/50 px-3 py-1 rounded-full text-white text-xs font-mono">
-                        {currentImageIndex + 1} / {selectedProject.images.length}
-                      </div>
-                    </>
+                    <div className="flex gap-2 overflow-x-auto p-4 bg-surface/50 border-b border-muted/20 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                      {selectedProject.images.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentImageIndex(idx)}
+                          className={`h-16 w-24 shrink-0 rounded overflow-hidden border-2 transition-all ${idx === currentImageIndex ? 'border-secondary opacity-100' : 'border-transparent opacity-40 hover:opacity-100'}`}
+                        >
+                          <img src={img} className="w-full h-full object-cover" alt="Thumbnail" />
+                        </button>
+                      ))}
+                    </div>
                   )}
                 </div>
               )}
@@ -329,6 +354,61 @@ export default function Projects() {
               </div>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Lightbox */}
+      <AnimatePresence>
+        {isFullscreen && selectedProject && selectedProject.images && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center p-4"
+          >
+            <button 
+              onClick={() => setIsFullscreen(false)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/50 rounded"
+            >
+              <Minimize size={32} />
+            </button>
+            <div className="relative w-full h-full flex items-center justify-center group">
+               <img src={selectedProject.images[currentImageIndex]} alt={selectedProject.title} className="max-w-full max-h-[85vh] object-contain" />
+               
+               {/* Controls */}
+               {selectedProject.images.length > 1 && (
+                 <>
+                   <button 
+                     onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => prev === 0 ? selectedProject.images!.length - 1 : prev - 1); }}
+                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                   >
+                     <ChevronLeft size={32} />
+                   </button>
+                   <button 
+                     onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (selectedProject.images && prev === selectedProject.images.length - 1) ? 0 : prev + 1); }}
+                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                   >
+                     <ChevronRight size={32} />
+                   </button>
+                 </>
+               )}
+            </div>
+            
+            {/* Fullscreen Thumbnail Row */}
+            {selectedProject.images.length > 1 && (
+              <div className="absolute bottom-6 flex gap-2 overflow-x-auto max-w-full px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                 {selectedProject.images.map((img, idx) => (
+                   <button
+                     key={idx}
+                     onClick={() => setCurrentImageIndex(idx)}
+                     className={`h-16 w-24 shrink-0 rounded overflow-hidden border-2 transition-all ${idx === currentImageIndex ? 'border-secondary opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`}
+                   >
+                     <img src={img} className="w-full h-full object-cover" alt="Thumbnail" />
+                   </button>
+                 ))}
+              </div>
+            )}
+          </motion.div>
         )}
       </AnimatePresence>
     </>
