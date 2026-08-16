@@ -86,6 +86,7 @@ import { useCarousel } from '../../hooks/useCarousel';
 export default function Projects() {
   const [shuffledProjects, setShuffledProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
@@ -152,7 +153,7 @@ export default function Projects() {
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="h-full"
                     >
-                      <ProjectCard project={project} onClick={() => setSelectedProject(project)} />
+                      <ProjectCard project={project} onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); }} />
                     </motion.div>
                   ))}
                 </AnimatePresence>
@@ -220,7 +221,7 @@ export default function Projects() {
                   <ProjectCard 
                     key={project.id} 
                     project={project} 
-                    onClick={() => setSelectedProject(project)} 
+                    onClick={() => { setSelectedProject(project); setCurrentImageIndex(0); }} 
                   />
                 ))}
               </div>
@@ -254,13 +255,33 @@ export default function Projects() {
               </button>
 
               {selectedProject.images && selectedProject.images.length > 0 && (
-                <div className="w-full h-48 md:h-64 -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl relative flex overflow-x-auto snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                  {selectedProject.images.map((img: string, idx: number) => (
-                    <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
-                      <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
-                      <img src={img} alt={`${selectedProject.title} ${idx + 1}`} className="w-full h-full object-cover" />
-                    </div>
-                  ))}
+                <div className="w-full h-48 md:h-64 -mt-6 -mx-6 md:-mt-10 md:-mx-10 mb-8 rounded-t-2xl relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
+                  <img 
+                    src={selectedProject.images[currentImageIndex]} 
+                    alt={`${selectedProject.title} ${currentImageIndex + 1}`} 
+                    className="w-full h-full object-cover" 
+                  />
+                  
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => prev === 0 ? selectedProject.images!.length - 1 : prev - 1); }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (selectedProject.images && prev === selectedProject.images.length - 1) ? 0 : prev + 1); }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-black/80"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/50 px-3 py-1 rounded-full text-white text-xs font-mono">
+                        {currentImageIndex + 1} / {selectedProject.images.length}
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
 

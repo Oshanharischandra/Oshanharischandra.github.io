@@ -14,6 +14,10 @@ export const projectsData: Project[] = [
   {
     id: "smartholder",
     title: "SmartHolder",
+    images: [
+      "/projects/Smart_holder_1.png",
+      "/projects/Smart_holder_2.png"
+    ],
     description: "ESP8266-based smart bulb holder with MQTT control, self-contained web dashboard, and QR-code pairing.",
     longDescription: "A fully self-contained smart bulb holder featuring servo-controlled shade walls, a mosquito repeller, and NTP scheduling. Users can pair via QR-code and control it through a built-in web server or MQTT.",
     tags: ["ESP8266", "MQTT", "Embedded Web Server", "C++"],
