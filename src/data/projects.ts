@@ -17,7 +17,7 @@ export const projectsData: Project[] = [
     images: [
       "/projects/Smart_holder_1.png",
       "/projects/Smart_holder_2.png",
-      "/projects/Smart_holder_3.png"
+      "/projects/Smart_holder_3.jpeg"
     ],
     description: "ESP8266-based smart bulb holder with MQTT control, self-contained web dashboard, and QR-code pairing.Developed for Tharushan's Team with Pasindu Dayarathna",
     longDescription: "A fully self-contained smart bulb holder featuring servo-controlled shade walls, a mosquito repeller, and NTP scheduling. Users can pair via QR-code and control it through a built-in web server or MQTT.",
@@ -29,8 +29,8 @@ export const projectsData: Project[] = [
     title: "Prefect Room Attendance System",
     images: [
       "/projects/PP_1.png",
-      "/projects/PP_2.png",
-      "/projects/PP_3.png"
+      "/projects/PP_2.jpeg",
+      "/projects/PP_3.jpeg"
     ],
     description: "RFID attendance logger with SD card CSV logging, RTC, and GSM alerts for Sri Gnanodaya National School Divulapitiya.",
     longDescription: "An ESP32-based attendance system using an MFRC522 RFID reader. It logs data locally to an SD card (CSV), uses a DS3231 RTC for timestamps, sends SMS alerts via SIM800L, and syncs to a web dashboard.",

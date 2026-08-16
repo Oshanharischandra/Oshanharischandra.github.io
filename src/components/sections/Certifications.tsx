@@ -37,19 +37,28 @@ export const certifications: Certification[] = [
   },
   {
     id: 3,
-    title: "Codeunio Hackathon",
-    issuer: "Codeunio",
+    title: "Codeuino Hackathon",
+    issuer: "Codeuino + Gavesha",
     date: "25 MAR 2023",
     description: "Secured 3rd Place.",
-    images: []
+    images: [
+    "/certificates/codeunio-cert.png",
+    "/certificates/codeuino_2.jpeg",
+    "/certificates/codeuino_3.jpeg",
+    "/certificates/codeuino_4.jpeg"
+  ]
   },
   {
     id: 4,
-    title: "Merit Selection & 3-Day Tech Session",
-    issuer: "Tech Session",
+    title: "Merit Selection & 3-Day Session @ UOM",
+    issuer: "MORAFORESIGHT 1.0",
     date: "2023",
     description: "Secured a coveted spot within the top 80 out of 1000+ applicants, culminating in an exclusive 3-day session.",
-    images: []
+    images: [
+    "/certificates/moraforesight_1.jpeg",
+    "/certificates/moraforesight_2.jpeg",
+    "/certificates/moraforesight_3.jpeg"
+  ]
   }
 ];
 
