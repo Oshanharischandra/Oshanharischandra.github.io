@@ -33,7 +33,7 @@ export const projectsData: Project[] = [
       "/projects/PP_3.jpeg"
     ],
     description: "RFID attendance logger with SD card CSV logging, RTC, and GSM alerts for Sri Gnanodaya National School Divulapitiya.",
-    longDescription: "An ESP32-based attendance system using an MFRC522 RFID reader. It logs data locally to an SD card (CSV), uses a DS3231 RTC for timestamps, sends SMS alerts via SIM800L, and syncs to a web dashboard.",
+    longDescription: "An ESP32-based attendance system using an MFRC522 RFID reader. It logs data locally to an SD card (CSV), uses a DS3231 RTC for timestamps, sends SMS alerts via SIM800L, and syncs to a web dashboard.This is a group project and my collabarators are Bajithan Sivathasa , Charith Fonseka",
     tags: ["ESP32", "RFID", "SIM800L", "C++", "Web Dashboard"],
     githubUrl: "https://oshanharischandra.github.io/#"
   },

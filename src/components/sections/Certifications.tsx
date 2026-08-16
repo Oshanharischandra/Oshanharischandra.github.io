@@ -42,7 +42,7 @@ export const certifications: Certification[] = [
     date: "25 MAR 2023",
     description: "Secured 3rd Place.",
     images: [
-    "/certificates/codeunio-cert.png",
+    "/certificates/codeuino-cert.png",
     "/certificates/codeuino_2.jpeg",
     "/certificates/codeuino_3.jpeg",
     "/certificates/codeuino_4.jpeg"
@@ -62,25 +62,44 @@ export const certifications: Certification[] = [
   }
 ];
 
-const CertCard = ({ cert, onClick }: { cert: Certification, onClick?: () => void }) => (
-  <div 
-    onClick={onClick}
-    className="bg-surface/80 backdrop-blur-md border border-muted/20 p-6 rounded-lg hover:border-secondary/50 hover:bg-surface/90 transition-all group flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_4px_20px_rgba(34,107,177,0.15)] relative overflow-hidden cursor-pointer"
-  >
-    <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full pointer-events-none group-hover:scale-150 transition-transform duration-500"></div>
-    <div className="mb-4 relative z-10 flex justify-between items-start">
-      <Award className="text-primary group-hover:text-secondary transition-colors" size={28} />
-      {cert.githubUrl && (
-        <a href={cert.githubUrl} target="_blank" rel="noreferrer" className="text-muted hover:text-secondary transition-colors z-20" onClick={e => e.stopPropagation()}>
-          <Github size={18} />
-        </a>
+const CertCard = ({ cert, onClick }: { cert: Certification, onClick?: () => void }) => {
+  const hasImage = cert.images && cert.images.length > 0;
+  
+  return (
+    <div 
+      onClick={onClick}
+      className="bg-surface/80 backdrop-blur-md border border-muted/20 rounded-lg hover:border-secondary/50 hover:bg-surface/90 transition-all group flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_4px_20px_rgba(34,107,177,0.15)] relative overflow-hidden cursor-pointer"
+    >
+      <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full pointer-events-none group-hover:scale-150 transition-transform duration-500 z-0"></div>
+      
+      {hasImage && (
+        <div className="w-full h-32 md:h-40 border-b border-muted/20 relative z-10 shrink-0">
+          <img src={cert.images![0]} alt={cert.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+        </div>
       )}
+
+      <div className="p-6 flex flex-col flex-grow relative z-10">
+        {(!hasImage || cert.githubUrl) && (
+          <div className="mb-4 flex justify-between items-start">
+            {!hasImage ? (
+              <Award className="text-primary group-hover:text-secondary transition-colors" size={28} />
+            ) : (
+              <div />
+            )}
+            {cert.githubUrl && (
+              <a href={cert.githubUrl} target="_blank" rel="noreferrer" className="text-muted hover:text-secondary transition-colors z-20" onClick={e => e.stopPropagation()}>
+                <Github size={18} />
+              </a>
+            )}
+          </div>
+        )}
+        <h3 className="text-lg font-bold text-white mb-2">{cert.title}</h3>
+        <h4 className="text-secondary font-mono text-sm mb-4">{cert.issuer} &bull; {cert.date}</h4>
+        <p className="text-muted text-sm flex-grow line-clamp-3">{cert.description}</p>
+      </div>
     </div>
-    <h3 className="text-lg font-bold text-white mb-2 relative z-10">{cert.title}</h3>
-    <h4 className="text-secondary font-mono text-sm mb-4 relative z-10">{cert.issuer} &bull; {cert.date}</h4>
-    <p className="text-muted text-sm flex-grow relative z-10 line-clamp-3">{cert.description}</p>
-  </div>
-);
+  );
+};
 
 export default function Certifications() {
   const [showGallery, setShowGallery] = useState(false);
