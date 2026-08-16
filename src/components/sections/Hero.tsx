@@ -59,7 +59,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 flex flex-col items-center z-20"
+        className="hidden md:flex absolute bottom-8 left-12 flex-col items-center z-20"
       >
         <span className="text-muted text-xs font-mono mb-2 uppercase tracking-widest" style={{ writingMode: 'vertical-rl' }}>Scroll</span>
         <motion.div

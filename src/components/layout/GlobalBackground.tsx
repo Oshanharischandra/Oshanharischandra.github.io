@@ -27,6 +27,14 @@ const TRACES = [
   { id: 20, d: 'M 2000,2800 L 2000,3400 L 1600,3800 L 1600,4500 L 2200,5100 L 2200,6000', delay: 0, pulse: false },
   { id: 21, d: 'M 0,3200 L 400,3200 L 700,3500 L 700,4400 L 1100,4800 L 1400,4800', delay: 0, pulse: false },
   { id: 22, d: 'M 2560,4200 L 2100,4200 L 1800,4500 L 1800,5500 L 1500,5800 L 1500,6000', delay: 0, pulse: false },
+  { id: 23, d: 'M 1000,0 L 1000,800 L 1300,1100 L 1300,1800 L 900,2200 L 900,3000', delay: 0, pulse: false },
+  { id: 24, d: 'M 1500,0 L 1500,900 L 1200,1200 L 1200,2000 L 1600,2400 L 1600,3200', delay: 0, pulse: false },
+  { id: 25, d: 'M 0,200 L 400,200 L 600,400 L 600,1200 L 200,1600 L 200,2200', delay: 0, pulse: false },
+  { id: 26, d: 'M 2560,800 L 2000,800 L 1700,1100 L 1700,1900 L 2100,2300 L 2100,3100', delay: 0, pulse: false },
+  { id: 27, d: 'M 800,2000 L 800,2800 L 1200,3200 L 1200,4200 L 800,4600 L 800,5500', delay: 0, pulse: false },
+  { id: 28, d: 'M 1600,2200 L 1600,3000 L 1300,3300 L 1300,4000 L 1700,4400 L 1700,5200', delay: 0, pulse: false },
+  { id: 29, d: 'M 0,4000 L 500,4000 L 800,4300 L 800,5000 L 400,5400 L 400,6000', delay: 0, pulse: false },
+  { id: 30, d: 'M 2560,5000 L 2000,5000 L 1800,5200 L 1800,5800 L 2200,6000', delay: 0, pulse: false },
 ].map(t => ({...t, color: '#3a4649', width: 2, pulse: t.pulse !== false}));
 
 // Nodes at trace junctions or bends
@@ -50,7 +58,7 @@ const TraceLine = ({ trace, prefersReducedMotion }: { trace: any, prefersReduced
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity={0.08}
+        opacity={0.25}
       />
       {/* Animated pulse trace */}
       {!prefersReducedMotion && trace.pulse && (
