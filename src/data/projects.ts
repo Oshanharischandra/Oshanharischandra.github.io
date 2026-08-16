@@ -22,7 +22,7 @@ export const projectsData: Project[] = [
     description: "ESP8266-based smart bulb holder with MQTT control, self-contained web dashboard, and QR-code pairing.Developed for Tharushan's Team with Pasindu Dayarathna",
     longDescription: "A fully self-contained smart bulb holder featuring servo-controlled shade walls, a mosquito repeller, and NTP scheduling. Users can pair via QR-code and control it through a built-in web server or MQTT.",
     tags: ["Solid Works CAD","ESP8266", "MQTT", "Embedded Web Server", "C++"],
-    githubUrl: "https://github.com/username/smartholder"
+    githubUrl: "https://oshanharischandra.github.io/#"
   },
   {
     id: "prefect-attendance",
@@ -74,7 +74,7 @@ export const projectsData: Project[] = [
   description: "A smart prototype solution designed to encourage better hydration habits, awarded 2nd Runner-Up at INCO 2026.",
   longDescription: "An award-winning smart hydration system developed for the INCO 2026 exhibition. My core contributions to the project included 3D designing the hardware models and debugging the IoT systems to ensure a reliable, functional prototype.",
   tags: ["IoT", "3D Modeling", "Prototyping", "Smart Technology"],
-  githubUrl: "https://oshanharischandra.github.io/#"
+  githubUrl: "https://www.linkedin.com/posts/oshan-harischandra-354792351_inco2026-hydrohabit-universityofkelaniya-activity-7494725551195226112-XdJW?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFfbzHAB8wjNBJmOWq2cxOCDOHSHGn8Y4JI"
 }
 
 
